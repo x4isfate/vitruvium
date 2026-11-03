@@ -1,0 +1,444 @@
+/* «ВИТРУВИЙ» для Foundry VTT.
+ * Цвета и шрифт взяты с vitruvium.ru: тёмные панели, кремовый текст, шрифт Involve.
+ * Все цвета заданы переменными: модули и Ultra переопределяют их на .vitruvium. */
+
+@font-face { font-family: "Involve"; src: url("../assets/fonts/Involve-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Involve"; src: url("../assets/fonts/Involve-SemiBold.woff2") format("woff2"); font-weight: 600 700; font-style: normal; font-display: swap; }
+
+:root {
+  --v-bg: #0d0d0d;
+  --v-panel: #171719;
+  --v-panel-2: #1d1e20;
+  --v-panel-3: #222224;
+  --v-raise: #2b2b2e;
+  --v-line: rgba(220, 220, 235, 0.1);
+  --v-line-2: rgba(220, 220, 235, 0.2);
+  --v-line-3: rgba(220, 220, 235, 0.3);
+  --v-ink: #fff0e0;
+  --v-ink-2: #e8d6c3;
+  --v-muted: #9c9a96;
+  --v-dim: #5c5c63;
+  --v-accent: #ff8562;
+  --v-accent-soft: rgba(172, 89, 72, 0.62);
+  --v-success: #b9d3a0;
+  --v-failure: #ff8562;
+  --v-partial: #e8c27a;
+  --v-radius: 12px;
+  --v-radius-s: 8px;
+  --v-font: "Involve", "Segoe UI", system-ui, sans-serif;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Каркас окна                                                        */
+/* ------------------------------------------------------------------ */
+
+.vitruvium.application {
+  --color-text-primary: var(--v-ink);
+  --color-border: var(--v-line-2);
+  font-family: var(--v-font);
+  color: var(--v-ink);
+  background: var(--v-bg);
+  border: 1px solid var(--v-line-2);
+  border-radius: var(--v-radius);
+}
+.vitruvium.application .window-header {
+  background: var(--v-panel);
+  border-bottom: 1px solid var(--v-line);
+  color: var(--v-ink);
+  font-family: var(--v-font);
+}
+.vitruvium.application .window-content {
+  background: var(--v-bg);
+  color: var(--v-ink);
+  padding: 16px;
+  gap: 12px;
+}
+.vitruvium input[type="text"],
+.vitruvium input[type="number"],
+.vitruvium select,
+.vitruvium textarea {
+  font-family: var(--v-font);
+  color: var(--v-ink);
+  background: var(--v-panel-2);
+  border: 1px solid var(--v-line-2);
+  border-radius: var(--v-radius-s);
+}
+.vitruvium input:focus, .vitruvium select:focus, .vitruvium textarea:focus {
+  outline: 1px solid var(--v-accent);
+  box-shadow: none;
+}
+.vitruvium ::placeholder { color: var(--v-dim); }
+.vitruvium button {
+  font-family: var(--v-font);
+  color: var(--v-ink);
+}
+
+.vitruvium .v-eyebrow {
+  display: block;
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--v-muted);
+  border: none;
+}
+.vitruvium .v-hint { font-size: 12px; color: var(--v-muted); margin: 4px 0 8px; }
+.vitruvium .v-empty { color: var(--v-dim); font-size: 13px; margin: 6px 0; }
+.vitruvium .v-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  width: auto; flex: none;
+  padding: 4px 12px;
+  line-height: 22px;
+  font-size: 13px;
+  background: var(--v-panel-3);
+  border: 1px solid var(--v-line-2);
+  border-radius: var(--v-radius-s);
+  cursor: pointer;
+}
+.vitruvium .v-btn:hover { border-color: var(--v-accent); color: var(--v-accent); }
+.vitruvium .v-btn.wide { width: 100%; justify-content: center; margin-top: 8px; }
+.vitruvium .v-icon-btn {
+  flex: none; width: 28px; height: 28px; padding: 0;
+  background: transparent; border: 1px solid transparent; border-radius: var(--v-radius-s);
+  color: var(--v-muted); cursor: pointer;
+}
+.vitruvium .v-icon-btn:hover { color: var(--v-accent); border-color: var(--v-line-2); }
+.vitruvium .v-check { display: flex; align-items: center; gap: 8px; font-size: 13px; margin: 4px 0; }
+.vitruvium .v-rich { line-height: 1.5; }
+.vitruvium .v-block { margin-bottom: 16px; }
+
+/* ------------------------------------------------------------------ */
+/*  Лист персонажа                                                     */
+/* ------------------------------------------------------------------ */
+
+.vitruvium-sheet .window-content { display: flex; flex-direction: column; overflow: hidden; }
+
+.vitruvium-sheet .v-header {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 16px;
+  background: var(--v-panel);
+  border: 1px solid var(--v-line);
+  border-radius: var(--v-radius);
+}
+.vitruvium-sheet .v-portrait {
+  flex: none; width: 120px; height: 150px;
+  border-radius: var(--v-radius-s);
+  border: 1px solid var(--v-line-2);
+  overflow: hidden; background: var(--v-panel-2);
+  cursor: pointer;
+}
+.vitruvium-sheet .v-portrait.small { width: 72px; height: 72px; }
+.vitruvium-sheet .v-portrait img { width: 100%; height: 100%; object-fit: cover; border: none; }
+.vitruvium-sheet .v-head-main { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.vitruvium-sheet .v-title-row { display: flex; gap: 12px; align-items: center; }
+.vitruvium-sheet .v-name {
+  flex: 1;
+  margin: 0;
+  height: auto;
+  padding: 2px 8px;
+  font-size: 26px; font-weight: 600;
+  background: transparent; border: 1px solid transparent;
+  color: var(--v-ink);
+}
+.vitruvium-sheet input.v-name:hover { border-color: var(--v-line-2); }
+.vitruvium-sheet .v-mode {
+  flex: none; width: auto;
+  padding: 2px 12px; font-size: 12px; line-height: 22px;
+  background: var(--v-panel-3); border: 1px solid var(--v-line-2); border-radius: 999px;
+  cursor: pointer;
+}
+.vitruvium-sheet .v-meta-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.vitruvium-sheet .v-player { flex: 1; min-width: 160px; }
+.vitruvium-sheet .v-field { display: flex; gap: 10px; align-items: center; }
+.vitruvium-sheet .v-level-hint { margin: 0; font-size: 12px; color: var(--v-muted); line-height: 1.45; }
+.vitruvium-sheet .v-level-hint b { color: var(--v-ink); }
+
+.vitruvium .v-seg {
+  display: inline-flex; padding: 3px; gap: 2px;
+  background: var(--v-panel-2); border: 1px solid var(--v-line-2); border-radius: var(--v-radius-s);
+}
+.vitruvium .v-seg button {
+  width: 40px; height: 26px; padding: 0; line-height: 26px;
+  background: transparent; border: none; border-radius: 6px;
+  color: var(--v-muted); font-weight: 600; cursor: pointer;
+}
+.vitruvium .v-seg button.active { background: var(--v-accent-soft); color: var(--v-ink); }
+.vitruvium .v-seg button:disabled { cursor: default; }
+
+/* Характеристики и вдохновение */
+.vitruvium-sheet .v-strip {
+  display: flex; flex-direction: column; gap: 10px; align-items: stretch;
+  padding: 12px 16px;
+  background: var(--v-panel);
+  border: 1px solid var(--v-line);
+  border-radius: var(--v-radius);
+}
+.vitruvium-sheet .v-chars { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+.vitruvium-sheet .v-char {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 8px 4px 10px;
+  background: var(--v-panel-2);
+  border: 1px solid var(--v-line);
+  border-radius: var(--v-radius-s);
+}
+.vitruvium-sheet .v-char-roll {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  width: 100%; padding: 0;
+  background: transparent; border: none; cursor: pointer;
+}
+.vitruvium-sheet .v-char-roll:hover .v-icon { background: var(--v-accent); }
+.vitruvium-sheet .v-char-roll:hover .v-char-label { color: var(--v-accent); }
+.vitruvium .v-icon {
+  display: block; width: 30px; height: 26px;
+  background: var(--v-ink);
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+.vitruvium-sheet .v-char-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
+  color: var(--v-ink-2);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+}
+.vitruvium .v-char-value { font-size: 28px; font-weight: 600; line-height: 1; color: var(--v-ink); }
+.vitruvium .v-pips { display: inline-flex; gap: 4px; }
+.vitruvium .v-pip {
+  width: 16px; height: 5px; padding: 0; min-height: 0;
+  border: none; border-radius: 3px;
+  background: var(--v-raise);
+  cursor: pointer;
+}
+.vitruvium .v-pips.big .v-pip { width: 24px; height: 7px; }
+.vitruvium .v-pip.on { background: var(--v-accent); }
+.vitruvium .v-pip:disabled { cursor: default; }
+
+.vitruvium-sheet .v-inspiration { display: flex; align-items: center; gap: 12px; }
+.vitruvium-sheet .v-stars { display: inline-flex; gap: 4px; }
+.vitruvium-sheet .v-star {
+  width: 26px; height: 26px; padding: 0;
+  border: 1px solid var(--v-line-2); border-radius: 50%;
+  background: var(--v-panel-2);
+  position: relative; cursor: pointer;
+}
+.vitruvium-sheet .v-star::after {
+  content: ""; position: absolute; inset: 4px;
+  background: var(--v-dim);
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+.vitruvium-sheet .v-star.on { border-color: var(--v-accent); }
+.vitruvium-sheet .v-star.on::after { background: var(--v-accent); }
+.vitruvium-sheet .v-star:disabled { cursor: default; }
+
+/* Счётчики создания */
+.vitruvium-sheet .v-budget { display: flex; gap: 6px; flex-wrap: wrap; }
+.vitruvium .v-chip {
+  padding: 3px 10px;
+  font-size: 12px;
+  color: var(--v-muted);
+  background: var(--v-panel);
+  border: 1px solid var(--v-line-2);
+  border-radius: 999px;
+}
+.vitruvium .v-chip b { color: var(--v-ink); }
+.vitruvium .v-chip.over { border-color: var(--v-accent); color: var(--v-accent); }
+.vitruvium .v-chip.over b { color: var(--v-accent); }
+
+/* Вкладки */
+.vitruvium-sheet .v-tabs {
+  display: flex; gap: 0; flex-wrap: nowrap; overflow-x: auto;
+  border-bottom: 1px solid var(--v-line-2);
+  margin: 0;
+}
+.vitruvium-sheet .v-tab {
+  flex: none; white-space: nowrap;
+  padding: 8px 10px;
+  font-size: 13px;
+  color: var(--v-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  text-shadow: none;
+}
+.vitruvium-sheet .v-tab:hover { color: var(--v-ink); }
+.vitruvium-sheet .v-tab.active { color: var(--v-ink); border-bottom-color: var(--v-accent); }
+.vitruvium-sheet .v-pane { display: none; flex: 1; overflow-y: auto; padding: 4px 2px; min-height: 0; }
+.vitruvium-sheet .v-pane.active { display: block; }
+.vitruvium-sheet .v-pane prose-mirror { min-height: 240px; height: 100%; }
+.vitruvium .v-pane-head { display: flex; align-items: center; gap: 10px; margin: 6px 0; }
+.vitruvium .v-pane-head .v-eyebrow { flex: 1; }
+
+/* Списки предметов */
+.vitruvium .v-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.vitruvium .v-item {
+  background: var(--v-panel);
+  border: 1px solid var(--v-line);
+  border-radius: var(--v-radius-s);
+  padding: 6px 8px;
+}
+.vitruvium .v-item.open { border-color: var(--v-line-3); }
+.vitruvium .v-item-row { display: flex; align-items: center; gap: 10px; }
+.vitruvium .v-item-img { width: 32px; height: 32px; border: none; border-radius: 6px; flex: none; }
+.vitruvium .v-item-name {
+  flex: 1; text-align: left; padding: 0; min-width: 0;
+  background: transparent; border: none;
+  font-size: 15px; font-weight: 600; color: var(--v-ink);
+  cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.vitruvium .v-item-name:hover { color: var(--v-accent); }
+.vitruvium .v-item-ctl { display: inline-flex; gap: 2px; flex: none; }
+.vitruvium .v-item-ctl button {
+  width: 28px; height: 28px; padding: 0;
+  background: transparent; border: none; color: var(--v-muted); cursor: pointer;
+}
+.vitruvium .v-item-ctl button:hover { color: var(--v-accent); }
+.vitruvium .v-count { font-size: 12px; color: var(--v-muted); }
+.vitruvium .v-count.over { color: var(--v-accent); }
+.vitruvium .v-item-desc { margin: 8px 4px 2px 42px; font-size: 13px; color: var(--v-ink-2); }
+.vitruvium .v-abilities { list-style: none; margin: 6px 0 0 42px; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.vitruvium .v-abilities li {
+  font-size: 12px; padding: 2px 8px;
+  background: var(--v-panel-3); border: 1px solid var(--v-line); border-radius: 999px;
+}
+.vitruvium .v-abilities li span { color: var(--v-muted); margin-left: 6px; }
+.vitruvium .v-tags { display: inline-flex; flex-wrap: wrap; gap: 4px; margin: 0; }
+.vitruvium .v-tag {
+  font-size: 11px; padding: 1px 8px;
+  background: var(--v-accent-soft); color: var(--v-ink);
+  border-radius: 999px;
+}
+.vitruvium .v-tag.lv { background: var(--v-panel-3); border: 1px solid var(--v-line-2); }
+
+/* Статусы, уровни, аспекты */
+.vitruvium .v-rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.vitruvium .v-rows li { display: flex; gap: 6px; align-items: center; }
+.vitruvium .v-rows li > input[type="text"] { flex: 1; }
+.vitruvium .v-level-row input[type="number"] { width: 64px; flex: none; text-align: center; }
+.vitruvium .v-ability-rows li { align-items: flex-start; flex-wrap: wrap; }
+.vitruvium .v-ability-rows li textarea { flex: 1 1 100%; order: 3; }
+.vitruvium .v-aspects { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+.vitruvium .v-aspect {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 10px;
+  background: var(--v-panel);
+  border: 1px solid var(--v-line);
+  border-radius: var(--v-radius-s);
+}
+.vitruvium .v-aspect-head { display: flex; gap: 6px; }
+.vitruvium .v-aspect-name { margin: 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.vitruvium input.v-aspect-name { flex: 1; }
+.vitruvium .v-aspect-value { margin: 0; font-size: 13px; }
+.vitruvium .v-inline { display: flex; gap: 8px; align-items: center; font-size: 12px; color: var(--v-muted); }
+.vitruvium .v-inline input { width: 64px; flex: none; text-align: center; }
+.vitruvium .v-inline b { color: var(--v-ink); }
+.vitruvium .v-scale { list-style: none; margin: 0; padding: 0; font-size: 12px; color: var(--v-muted); }
+.vitruvium .v-scale li { display: flex; gap: 8px; }
+.vitruvium .v-scale li b { width: 24px; text-align: right; }
+.vitruvium .v-scale li.on { color: var(--v-ink); }
+.vitruvium .v-scale li.on b { color: var(--v-accent); }
+
+/* Краткий вид и персонаж мастера */
+.vitruvium-sheet.compact .v-portrait { width: 88px; height: 110px; }
+.vitruvium-sheet.compact .v-name { font-size: 22px; }
+.vitruvium-sheet.type-npc .v-portrait { width: 96px; height: 120px; }
+
+/* ------------------------------------------------------------------ */
+/*  Лист предмета                                                       */
+/* ------------------------------------------------------------------ */
+
+.vitruvium-sheet.item .window-content { padding: 12px; }
+.vitruvium-sheet.item .v-item-sheet { display: flex; flex-direction: column; gap: 12px; height: 100%; min-height: 0; }
+.vitruvium-sheet.item .v-item-body { flex: 1; overflow-y: auto; min-height: 0; }
+.vitruvium-sheet.item .v-item-body prose-mirror { min-height: 160px; }
+
+/* ------------------------------------------------------------------ */
+/*  Окна проверки и запроса                                             */
+/* ------------------------------------------------------------------ */
+
+.vitruvium-check-dialog .v-dialog { display: flex; flex-direction: column; gap: 6px; }
+.vitruvium-check-dialog .form-group { display: flex; align-items: center; gap: 10px; }
+.vitruvium-check-dialog .form-group label { flex: 0 0 120px; color: var(--v-ink-2); font-size: 13px; }
+.vitruvium-check-dialog .form-group select,
+.vitruvium-check-dialog .form-group input[type="text"] { flex: 1; }
+.vitruvium-check-dialog .v-locked { flex: 1; font-size: 15px; }
+.vitruvium-check-dialog .v-preview {
+  margin: 8px 0 0; padding: 8px 10px;
+  font-size: 13px; color: var(--v-ink-2);
+  background: var(--v-panel); border: 1px solid var(--v-line); border-radius: var(--v-radius-s);
+}
+.vitruvium-check-dialog .v-preview.warn { border-color: var(--v-accent); color: var(--v-accent); }
+.vitruvium-check-dialog .form-footer button {
+  background: var(--v-panel-3); border: 1px solid var(--v-line-2); color: var(--v-ink); border-radius: var(--v-radius-s);
+}
+.vitruvium-check-dialog .form-footer button[data-action="roll"],
+.vitruvium-check-dialog .form-footer button[data-action="send"] { background: var(--v-accent-soft); border-color: var(--v-accent); }
+
+/* ------------------------------------------------------------------ */
+/*  Карточки в чате                                                     */
+/* ------------------------------------------------------------------ */
+
+.vitruvium-card {
+  font-family: var(--v-font);
+  color: var(--v-ink);
+  background: var(--v-bg);
+  border: 1px solid var(--v-line-2);
+  border-radius: var(--v-radius-s);
+  padding: 10px 12px;
+}
+.vitruvium-card h3 { margin: 2px 0 0; border: none; font-size: 17px; font-weight: 600; color: var(--v-ink); }
+.vitruvium-card .vc-eyebrow { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--v-muted); }
+.vitruvium-card .vc-sub { margin: 2px 0 0; font-size: 12px; color: var(--v-ink-2); }
+.vitruvium-card .vc-facts { list-style: none; margin: 8px 0; padding: 0; font-size: 12px; color: var(--v-muted); display: flex; flex-wrap: wrap; gap: 2px 12px; }
+.vitruvium-card .vc-facts b { color: var(--v-ink); }
+.vitruvium-card .vc-dim { color: var(--v-muted); font-weight: 400; }
+.vitruvium-card .vc-rolls { display: flex; flex-direction: column; gap: 4px; }
+.vitruvium-card .vc-roll { display: flex; align-items: center; gap: 8px; padding: 4px 6px; border-radius: 6px; background: var(--v-panel); }
+.vitruvium-card .vc-roll.dropped { opacity: 0.45; }
+.vitruvium-card .vc-faces { display: inline-flex; flex-wrap: wrap; gap: 3px; flex: 1; }
+.vitruvium-card .vitruvium-face { width: 24px; height: 24px; border: none; }
+.vitruvium-card .vc-roll-sum { font-weight: 600; font-size: 16px; min-width: 18px; text-align: right; }
+.vitruvium-card .vc-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--v-accent); }
+.vitruvium-card .vc-bonus { margin: 6px 0 0; font-size: 12px; color: var(--v-ink-2); }
+.vitruvium-card .vc-total { display: flex; align-items: baseline; gap: 10px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--v-line); flex-wrap: wrap; }
+.vitruvium-card .vc-big { font-size: 26px; font-weight: 600; }
+.vitruvium-card .vitruvium-outcome { margin-left: auto; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; font-size: 13px; }
+.vitruvium-card .vitruvium-outcome[data-outcome="success"] { color: var(--v-success); }
+.vitruvium-card .vitruvium-outcome[data-outcome="failure"] { color: var(--v-failure); }
+.vitruvium-card .vitruvium-outcome[data-outcome="partial"] { color: var(--v-partial); }
+.vitruvium-card .vitruvium-outcome[data-outcome="none"] { color: var(--v-muted); text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 12px; }
+.vitruvium-card .vitruvium-gm-tools:empty { display: none; }
+.vitruvium-card .vitruvium-gm-tools button,
+.vitruvium-card .vc-button {
+  width: 100%; margin-top: 8px;
+  font-family: var(--v-font); font-size: 12px;
+  color: var(--v-ink);
+  background: var(--v-panel-3);
+  border: 1px solid var(--v-line-2);
+  border-radius: 6px;
+}
+.vitruvium-card .vc-button { background: var(--v-accent-soft); border-color: var(--v-accent); }
+
+/* Кубики в стандартной подсказке броска */
+.dice-tooltip .roll.die.dv { background: none; }
+.dice-tooltip .roll.die.dv img.vitruvium-face { width: 24px; height: 24px; border: none; }
+
+/* ------------------------------------------------------------------ */
+/*  Приветствие                                                         */
+/* ------------------------------------------------------------------ */
+
+.vitruvium-welcome .window-content { padding: 20px 24px; }
+.vitruvium-welcome .v-welcome-head { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
+.vitruvium-welcome .v-welcome-mark { width: 64px; height: 64px; border: none; }
+.vitruvium-welcome h1 { margin: 2px 0; border: none; font-size: 28px; font-weight: 600; color: var(--v-ink); }
+.vitruvium-welcome .v-welcome-head p { margin: 0; color: var(--v-ink-2); }
+.vitruvium-welcome .v-steps { margin: 8px 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; line-height: 1.45; font-size: 13px; }
+.vitruvium-welcome .v-steps b { color: var(--v-ink); }
+.vitruvium-welcome code { background: var(--v-panel-3); color: var(--v-accent); border: none; padding: 0 4px; border-radius: 4px; }
+.vitruvium-welcome .v-credits { display: grid; grid-template-columns: 180px 1fr; gap: 4px 12px; margin: 8px 0; font-size: 13px; }
+.vitruvium-welcome .v-credits dt { color: var(--v-muted); }
+.vitruvium-welcome .v-credits dd { margin: 0; }
+.vitruvium-welcome a { color: var(--v-accent); }
+.vitruvium-welcome .v-welcome-foot { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--v-line); padding-top: 10px; }
+
+/* Значки граней в стандартной подсказке броска (/r 3dv) */
+.dice-tooltip img.vitruvium-face,
+.dice-rolls img.vitruvium-face { width: 24px; height: 24px; border: none; vertical-align: middle; }

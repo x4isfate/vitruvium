@@ -1,0 +1,24 @@
+<div class="v-pane-head">
+  <h3 class="v-eyebrow">{{title}}</h3>
+  {{#if editable}}<button type="button" class="v-btn" data-action="itemCreate" data-type="{{type}}"><i class="fa-solid fa-plus"></i> {{localize 'VITRUVIUM.Sheet.add'}}</button>{{/if}}
+</div>
+{{#unless list.length}}<p class="v-empty">{{localize 'VITRUVIUM.Sheet.dropHint'}}</p>{{/unless}}
+<ol class="v-items">
+  {{#each list}}
+  <li class="v-item draggable {{#if expanded}}open{{/if}}" data-item-id="{{id}}">
+    <div class="v-item-row">
+      <img class="v-item-img" src="{{img}}" alt="">
+      <button type="button" class="v-item-name" data-action="itemToggle">{{name}}</button>
+      {{#if statuses.length}}<span class="v-tags">{{#each statuses}}<span class="v-tag">{{name}}</span>{{/each}}</span>{{/if}}
+      {{#if levels.length}}<span class="v-tags">{{#each levels}}<span class="v-tag lv">{{name}} {{value}}{{#if max}}/{{max}}{{/if}}</span>{{/each}}</span>{{/if}}
+      <span class="v-item-ctl">
+        {{#if ../editable}}
+        <button type="button" data-action="itemEdit" data-tooltip="{{localize 'VITRUVIUM.Sheet.edit'}}"><i class="fa-solid fa-pen"></i></button>
+        <button type="button" data-action="itemDelete" data-tooltip="{{localize 'VITRUVIUM.Sheet.delete'}}"><i class="fa-solid fa-trash"></i></button>
+        {{/if}}
+      </span>
+    </div>
+    {{#if expanded}}<div class="v-item-desc v-rich">{{{description}}}</div>{{/if}}
+  </li>
+  {{/each}}
+</ol>

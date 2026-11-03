@@ -1,0 +1,40 @@
+<div class="v-block">
+  <div class="v-pane-head">
+    <h3 class="v-eyebrow">{{localize 'VITRUVIUM.States.statuses'}}</h3>
+    {{#if editable}}<button type="button" class="v-btn" data-action="listAdd" data-list="statuses"><i class="fa-solid fa-plus"></i></button>{{/if}}
+  </div>
+  <p class="v-hint">{{localize 'VITRUVIUM.States.statusesHint'}}</p>
+  {{#if editable}}
+  <ol class="v-rows">
+    {{#each statuses}}
+    <li><input type="text" name="system.statuses.{{@index}}.name" value="{{name}}" placeholder="{{localize 'VITRUVIUM.States.statusName'}}">
+      <button type="button" class="v-icon-btn" data-action="listRemove" data-list="statuses" data-index="{{@index}}"><i class="fa-solid fa-xmark"></i></button></li>
+    {{/each}}
+  </ol>
+  {{else}}
+  <p class="v-tags">{{#each statuses}}<span class="v-tag">{{name}}</span>{{else}}<span class="v-empty">{{localize 'VITRUVIUM.Sheet.empty'}}</span>{{/each}}</p>
+  {{/if}}
+</div>
+
+<div class="v-block">
+  <div class="v-pane-head">
+    <h3 class="v-eyebrow">{{localize 'VITRUVIUM.States.levels'}}</h3>
+    {{#if editable}}<button type="button" class="v-btn" data-action="listAdd" data-list="levels"><i class="fa-solid fa-plus"></i></button>{{/if}}
+  </div>
+  <p class="v-hint">{{localize 'VITRUVIUM.States.levelsHint'}}</p>
+  {{#if editable}}
+  <ol class="v-rows">
+    {{#each levels}}
+    <li class="v-level-row">
+      <input type="text" name="system.levels.{{@index}}.name" value="{{name}}" placeholder="{{localize 'VITRUVIUM.States.levelName'}}">
+      <input type="number" step="1" name="system.levels.{{@index}}.value" value="{{value}}" data-tooltip="{{localize 'VITRUVIUM.States.levelValue'}}">
+      <span>/</span>
+      <input type="number" step="1" name="system.levels.{{@index}}.max" value="{{max}}" placeholder="—" data-tooltip="{{localize 'VITRUVIUM.States.levelMax'}}">
+      <button type="button" class="v-icon-btn" data-action="listRemove" data-list="levels" data-index="{{@index}}"><i class="fa-solid fa-xmark"></i></button>
+    </li>
+    {{/each}}
+  </ol>
+  {{else}}
+  <p class="v-tags">{{#each levels}}<span class="v-tag lv">{{name}} {{value}}{{#if max}}/{{max}}{{/if}}</span>{{else}}<span class="v-empty">{{localize 'VITRUVIUM.Sheet.empty'}}</span>{{/each}}</p>
+  {{/if}}
+</div>

@@ -1,0 +1,34 @@
+<section class="tab v-pane {{tab.cssClass}}" data-group="primary" data-tab="domains">
+  <div class="v-pane-head">
+    <h3 class="v-eyebrow">{{localize 'VITRUVIUM.Tab.domains'}}</h3>
+    {{#if editable}}<button type="button" class="v-btn" data-action="itemCreate" data-type="domain"><i class="fa-solid fa-plus"></i> {{localize 'VITRUVIUM.Sheet.add'}}</button>{{/if}}
+  </div>
+  {{#unless domains.length}}<p class="v-empty">{{localize 'VITRUVIUM.Sheet.dropHint'}}</p>{{/unless}}
+  <ol class="v-items">
+    {{#each domains}}
+    <li class="v-item v-domain draggable {{#if expanded}}open{{/if}}" data-item-id="{{id}}">
+      <div class="v-item-row">
+        <img class="v-item-img" src="{{img}}" alt="">
+        <button type="button" class="v-item-name" data-action="itemToggle">{{name}}</button>
+        <span class="v-pips" data-tooltip="{{localize 'VITRUVIUM.Sheet.domainLevel'}}">
+          {{#each pips}}<button type="button" class="v-pip {{#if on}}on{{/if}}" data-action="setDomainLevel" data-value="{{n}}" {{#unless ../../editable}}disabled{{/unless}}></button>{{/each}}
+        </span>
+        <span class="v-count {{#if overAbilities}}over{{/if}}">{{abilities.length}}/{{slots}}</span>
+        <span class="v-item-ctl">
+          <button type="button" data-action="rollDomain" data-tooltip="{{localize 'VITRUVIUM.Sheet.rollDomain'}}"><i class="fa-solid fa-dice-six"></i></button>
+          {{#if ../editable}}
+          <button type="button" data-action="itemEdit" data-tooltip="{{localize 'VITRUVIUM.Sheet.edit'}}"><i class="fa-solid fa-pen"></i></button>
+          <button type="button" data-action="itemDelete" data-tooltip="{{localize 'VITRUVIUM.Sheet.delete'}}"><i class="fa-solid fa-trash"></i></button>
+          {{/if}}
+        </span>
+      </div>
+      {{#if abilities.length}}
+      <ul class="v-abilities">
+        {{#each abilities}}<li><b>{{name}}</b>{{#if description}}<span>{{description}}</span>{{/if}}</li>{{/each}}
+      </ul>
+      {{/if}}
+      {{#if expanded}}<div class="v-item-desc v-rich">{{{description}}}</div>{{/if}}
+    </li>
+    {{/each}}
+  </ol>
+</section>

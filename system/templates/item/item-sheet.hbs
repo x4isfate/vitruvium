@@ -1,0 +1,62 @@
+<div class="v-item-sheet">
+  <header class="v-header v-item-header">
+    <div class="v-portrait small" {{#if editable}}data-action="editImage"{{/if}}><img src="{{item.img}}" alt=""></div>
+    <div class="v-head-main">
+      <span class="v-eyebrow">{{typeLabel}}</span>
+      {{#if editable}}
+      <input class="v-name" type="text" name="name" value="{{item.name}}">
+      {{else}}
+      <h1 class="v-name">{{item.name}}</h1>
+      {{/if}}
+      {{#if isDomain}}
+      <div class="v-meta-row">
+        <span class="v-eyebrow">{{localize 'VITRUVIUM.Sheet.domainLevel'}}</span>
+        <span class="v-pips big">
+          {{#each pips}}<button type="button" class="v-pip {{#if on}}on{{/if}}" data-action="setLevel" data-value="{{n}}" {{#unless ../editable}}disabled{{/unless}}></button>{{/each}}
+        </span>
+        <b class="v-char-value">{{system.level}}</b>
+      </div>
+      {{/if}}
+    </div>
+  </header>
+
+  <div class="v-item-body">
+    <div class="v-block">
+      <h3 class="v-eyebrow">{{localize 'VITRUVIUM.Sheet.description'}}</h3>
+      {{#if editable}}
+      <prose-mirror name="system.description" value="{{source.description}}" toggled>{{{descriptionHTML}}}</prose-mirror>
+      {{else}}
+      <div class="v-rich">{{{descriptionHTML}}}</div>
+      {{/if}}
+    </div>
+
+    {{#if isDomain}}
+    <div class="v-block">
+      <div class="v-pane-head">
+        <h3 class="v-eyebrow">{{localize 'VITRUVIUM.Sheet.abilities'}}</h3>
+        <span class="v-count {{#if overAbilities}}over{{/if}}">{{localize 'VITRUVIUM.Sheet.abilitiesSlots' n=system.abilities.length max=slots}}</span>
+        {{#if editable}}<button type="button" class="v-btn" data-action="listAdd" data-list="abilities"><i class="fa-solid fa-plus"></i></button>{{/if}}
+      </div>
+      <ol class="v-rows v-ability-rows">
+        {{#each system.abilities}}
+        <li>
+          {{#if ../editable}}
+          <input type="text" name="system.abilities.{{@index}}.name" value="{{name}}" placeholder="{{localize 'VITRUVIUM.Sheet.abilityName'}}">
+          <textarea name="system.abilities.{{@index}}.description" rows="2" placeholder="{{localize 'VITRUVIUM.Sheet.abilityDescription'}}">{{description}}</textarea>
+          <button type="button" class="v-icon-btn" data-action="listRemove" data-list="abilities" data-index="{{@index}}"><i class="fa-solid fa-xmark"></i></button>
+          {{else}}
+          <b>{{name}}</b> <span>{{description}}</span>
+          {{/if}}
+        </li>
+        {{else}}
+        <li class="v-empty">{{localize 'VITRUVIUM.Sheet.empty'}}</li>
+        {{/each}}
+      </ol>
+    </div>
+    {{/if}}
+
+    {{#if isProperty}}
+    {{> "systems/vitruvium/templates/actor/parts/statuses-levels.hbs" statuses=system.statuses levels=system.levels editable=editable}}
+    {{/if}}
+  </div>
+</div>

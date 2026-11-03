@@ -1,0 +1,44 @@
+<div class="v-dialog">
+  <div class="form-group">
+    <label>{{localize 'VITRUVIUM.Check.Characteristic'}}</label>
+    <select name="characteristic">
+      <option value="" {{#unless characteristic}}selected{{/unless}}>{{localize 'VITRUVIUM.Check.DomainAlone'}}</option>
+      {{#each characteristics}}
+      <option value="{{key}}" {{#if (vitruviumEq key ../characteristic)}}selected{{/if}}>{{label}} ({{value}})</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label>{{localize 'VITRUVIUM.Check.Domain'}}</label>
+    <select name="domainId">
+      <option value="">{{localize 'VITRUVIUM.Check.NoDomain'}}</option>
+      {{#each domains}}
+      <option value="{{id}}" {{#if (vitruviumEq id ../domainId)}}selected{{/if}}>{{name}} ({{level}})</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label>{{localize 'VITRUVIUM.Check.Difficulty'}}</label>
+    {{#if lockDifficulty}}
+    <input type="hidden" name="difficulty" value="{{difficulty}}">
+    <b class="v-locked">{{#if difficulty}}{{difficulty}}{{else}}{{localize 'VITRUVIUM.Check.NoDifficulty'}}{{/if}}</b>
+    {{else}}
+    <select name="difficulty">
+      <option value="">{{localize 'VITRUVIUM.Check.NoDifficulty'}}</option>
+      {{#each difficulties}}<option value="{{this}}" {{#if (vitruviumEq this ../difficulty)}}selected{{/if}}>{{this}}</option>{{/each}}
+    </select>
+    {{/if}}
+  </div>
+  <div class="form-group">
+    <label>{{localize 'VITRUVIUM.Check.Advantages'}}</label>
+    <select name="advantages">{{#each modifiers}}<option value="{{this}}" {{#if (vitruviumEq this ../advantages)}}selected{{/if}}>{{this}}</option>{{/each}}</select>
+  </div>
+  <div class="form-group">
+    <label>{{localize 'VITRUVIUM.Check.Hindrances'}}</label>
+    <select name="hindrances">{{#each modifiers}}<option value="{{this}}" {{#if (vitruviumEq this ../hindrances)}}selected{{/if}}>{{this}}</option>{{/each}}</select>
+  </div>
+  <p class="v-eyebrow">{{localize 'VITRUVIUM.Check.Inspiration' n=inspiration}}</p>
+  <label class="v-check"><input type="checkbox" name="inspireDie"> {{localize 'VITRUVIUM.Check.InspireDie'}}</label>
+  <label class="v-check"><input type="checkbox" name="inspireSuccesses"> {{localize 'VITRUVIUM.Check.InspireSuccesses'}}</label>
+  <p class="v-preview" data-preview></p>
+</div>

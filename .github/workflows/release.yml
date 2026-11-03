@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - name: Проверка версии
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          SYS=$(node -p "require('./system/system.json').version")
+          MOD=$(node -p "require('./modules/vitruvium-dice/module.json').version")
+          test "$TAG" = "$SYS" || { echo "system.json: $SYS, тег: $TAG"; exit 1; }
+          test "$TAG" = "$MOD" || { echo "module.json: $MOD, тег: $TAG"; exit 1; }
+      - run: npm run dist
+      - name: Релиз
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/vitruvium.zip dist/system.json dist/vitruvium-dice.zip dist/module.json \
+            --title "$GITHUB_REF_NAME" --notes-file CHANGELOG.md
