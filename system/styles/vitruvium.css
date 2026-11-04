@@ -445,7 +445,7 @@
 
 .vitruvium-welcome .window-content { padding: 20px 24px; }
 .vitruvium-welcome .v-welcome-head { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
-.vitruvium-welcome .v-welcome-mark { width: 64px; height: 64px; border: none; }
+.vitruvium-welcome .v-welcome-mark { flex: none; width: 72px; height: 72px; padding: 14px 10px; object-fit: contain; background: #000; border: 1px solid var(--v-line-2); border-radius: var(--v-radius); }
 .vitruvium-welcome .v-welcome-head h1 { margin: 2px 0; border: none; font-size: 28px; font-weight: 600; color: var(--v-ink); }
 .vitruvium-welcome .v-welcome-head p { margin: 0; color: var(--v-ink-2); }
 .vitruvium-welcome .v-steps { margin: 8px 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; line-height: 1.45; font-size: 13px; }
