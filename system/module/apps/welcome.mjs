@@ -28,6 +28,8 @@ export default class WelcomeWindow extends HandlebarsApplicationMixin(Applicatio
       version: game.system.version,
       rulesVersion: "Beta 3.1",
       showOnStart: game.settings.get("vitruvium", "welcomeShowOnStart"),
+      steps: [1, 2, 3, 4, 5, 6, 7].map(n => game.i18n.localize(`VITRUVIUM.Welcome.step${n}`)),
+      rulesNote: game.i18n.localize("VITRUVIUM.Welcome.rulesNote"),
       isGM: game.user.isGM
     };
   }

@@ -9,12 +9,13 @@ const MODULE = "modules/vitruvium-dice/textures";
 Hooks.once("diceSoNiceReady", dice3d => {
   if ( game.system.id !== "vitruvium" ) return;
 
-  dice3d.addSystem({ id: "vitruvium", name: "Витрувий" }, "preferred");
+  const t = (key, fallback) => game.i18n.has(key) ? game.i18n.localize(key) : fallback;
+  dice3d.addSystem({ id: "vitruvium", name: t("VITRUVIUM.DiceModule.system", "Vitruvium") }, "preferred");
 
   dice3d.addColorset({
     name: "vitruvium-black",
-    description: "Витрувий: чёрный",
-    category: "Витрувий",
+    description: t("VITRUVIUM.DiceModule.colorset", "Vitruvium: black"),
+    category: t("VITRUVIUM.DiceModule.system", "Vitruvium"),
     foreground: "#FFF0E0",
     background: "#0D0D0D",
     outline: "none",

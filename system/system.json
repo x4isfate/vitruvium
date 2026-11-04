@@ -1,8 +1,8 @@
 {
   "id": "vitruvium",
-  "title": "Витрувий",
-  "description": "Система «ВИТРУВИЙ» (Beta 3.1) для Foundry VTT: лист персонажа, проверки характеристик особыми кубиками, домены, атрибуты, имущество, статусы, уровни и аспекты.",
-  "version": "0.2.3",
+  "title": "Vitruvium · Витрувий",
+  "description": "VITRUVIUM (Beta 3.1) for Foundry VTT: character sheet, characteristic checks with special dice, domains, attributes, property, statuses, levels and aspects. Interface in English and Russian. / Система «ВИТРУВИЙ» (Beta 3.1) для Foundry VTT, интерфейс на русском и английском.",
+  "version": "0.2.4",
   "compatibility": {
     "minimum": "14",
     "verified": "14.370",
@@ -15,7 +15,7 @@
   "styles": ["styles/vitruvium.css"],
   "languages": [
     { "lang": "ru", "name": "Русский", "path": "lang/ru.json" },
-    { "lang": "en", "name": "English", "path": "lang/ru.json" }
+    { "lang": "en", "name": "English", "path": "lang/en.json" }
   ],
   "documentTypes": {
     "Actor": {
@@ -31,7 +31,7 @@
   "packs": [
     {
       "name": "rules",
-      "label": "Правила «ВИТРУВИЙ»",
+      "label": "VITRUVIUM.Pack.rules",
       "path": "packs/rules",
       "type": "JournalEntry",
       "ownership": { "PLAYER": "OBSERVER", "ASSISTANT": "OWNER" },
@@ -39,12 +39,12 @@
     }
   ],
   "packFolders": [
-    { "name": "Витрувий", "sorting": "m", "color": "#0b0b0c", "packs": ["rules"] }
+    { "name": "Vitruvium", "sorting": "m", "color": "#0b0b0c", "packs": ["rules"] }
   ],
   "initiative": "0",
   "url": "https://github.com/x4isfate/vitruvium",
   "manifest": "https://github.com/x4isfate/vitruvium/releases/latest/download/system.json",
-  "download": "https://github.com/x4isfate/vitruvium/releases/download/v0.2.3/vitruvium.zip",
+  "download": "https://github.com/x4isfate/vitruvium/releases/download/v0.2.4/vitruvium.zip",
   "license": "LICENSE",
   "readme": "README.md",
   "changelog": "CHANGELOG.md"
