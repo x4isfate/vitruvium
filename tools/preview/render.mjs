@@ -60,8 +60,9 @@ const stats = tpl("templates/apps/stats.hbs")({ ...ctx, radar, level: { label: "
   property: [{ name: "Револьвер" }], statuses: ctx.statuses, levels: ctx.levelsList,
   aspects: [{ name: "Дисциплина", subject: "Корабль «Эльскаринна»", value: 1, current: "Нормально" }] });
 const css = readFileSync(sys("styles/vitruvium.css"), "utf8").replaceAll("../assets/", `file://${root}/system/assets/`);
-const page = `<html><head><meta charset="utf-8"><style>${css} body{margin:0;background:#000} .window-content{display:flex;flex-direction:column;gap:12px;height:900px}</style></head>
-<body><div class="vitruvium vitruvium-sheet actor application" style="width:820px;margin:10px"><div class="window-content">${fix(html)}</div></div>
+const cuiCss = process.env.CUI ? readFileSync(process.env.CUI, "utf8") : "";
+const page = `<html><head><meta charset="utf-8"><style>${cuiCss}</style><style>${css} body{margin:0;background:#000} .window-content{display:flex;flex-direction:column;gap:12px;height:900px}</style></head>
+<body class="${process.env.CUI ? "crlngn-ui cui-font-t cui-font-ui crlngn-ws crlngn-sheets theme-dark" : ""}"><form class="vitruvium vitruvium-sheet actor application sheet standard-form" style="width:820px;margin:10px"><header class="window-header"><h1 class="window-title">Эльза Хорн</h1></header><div class="window-content">${fix(html)}</div></form>
 <div class="vitruvium vitruvium-stats application" style="width:780px;position:absolute;left:850px;top:10px"><div class="window-content">${fix(stats)}</div></div></body></html>`;
 
 const { chromium } = createRequire(import.meta.url)("playwright");
