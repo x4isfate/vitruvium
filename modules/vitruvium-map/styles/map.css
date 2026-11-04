@@ -1,0 +1,150 @@
+/* «Витрувий: карта мира». Цвета берутся из переменных системы на .vitruvium,
+ * запасные значения нужны, если система не загружена. */
+
+.vitruvium.vmap-palette,
+.vitruvium.vmap-sheet,
+.vitruvium.vmap-page {
+  --vm-bg: var(--v-bg, #0d0d0d);
+  --vm-panel: var(--v-panel, #171719);
+  --vm-panel-2: var(--v-panel-2, #1d1e20);
+  --vm-line: var(--v-line, rgba(220, 220, 235, 0.1));
+  --vm-line-2: var(--v-line-2, rgba(220, 220, 235, 0.2));
+  --vm-ink: var(--v-ink, #fff0e0);
+  --vm-ink-2: var(--v-ink-2, #e8d6c3);
+  --vm-muted: var(--v-muted, #9c9a96);
+  --vm-accent: var(--v-accent, #ff8562);
+  --vm-success: var(--v-success, #b9d3a0);
+  --vm-partial: var(--v-partial, #e8c27a);
+  --vm-radius: var(--v-radius-s, 8px);
+}
+
+/* Акцентная кнопка: в системе её нет, делаем здесь. */
+.vitruvium .v-btn.v-btn-accent { background: var(--vm-accent); border-color: var(--vm-accent); color: #1a0f0b; }
+.vitruvium .v-btn.v-btn-accent:hover { filter: brightness(1.08); color: #1a0f0b; }
+.vitruvium .v-btn:disabled { opacity: 0.45; cursor: default; pointer-events: none; }
+
+/* ------------------------------------------------------------------ */
+/*  Палитра над картой                                                 */
+/* ------------------------------------------------------------------ */
+
+.vitruvium.vmap-palette {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  max-width: min(920px, calc(100vw - 420px));
+  padding: 8px 12px;
+  background: color-mix(in srgb, var(--vm-panel) 92%, transparent);
+  border: 1px solid var(--vm-line-2);
+  border-radius: 12px;
+  color: var(--vm-ink);
+  font-family: var(--v-font, system-ui, sans-serif);
+  font-size: 13px;
+  pointer-events: auto;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+.vmap-palette .vmap-pal-hint { display: flex; flex-direction: column; gap: 2px; min-width: 200px; flex: 1 1 260px; }
+.vmap-palette .vmap-pal-hint span { color: var(--vm-muted); font-size: 12px; }
+.vmap-palette .vmap-pal-field { display: inline-flex; align-items: center; gap: 6px; color: var(--vm-muted); font-size: 12px; }
+.vmap-palette .vmap-pal-field select { min-width: 120px; height: 28px; }
+.vmap-palette .vmap-pal-sel { display: inline-flex; align-items: center; gap: 6px; padding-left: 10px; border-left: 1px solid var(--vm-line-2); }
+.vmap-palette .vmap-pal-sel b { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ------------------------------------------------------------------ */
+/*  Окна                                                               */
+/* ------------------------------------------------------------------ */
+
+.vmap-sheet .window-content { padding: 12px 14px; overflow-y: auto; }
+.vmap-sheet textarea { width: 100%; resize: vertical; font-size: 13px; }
+.vmap-sheet input[type="text"] { min-width: 0; }
+.vmap-sheet label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--vm-muted); }
+.vmap-sheet .v-check { flex-direction: row; color: var(--vm-ink); }
+
+.vmap-sheet .vmap-name { width: 100%; height: 36px; font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+.vmap-sheet .vmap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px 10px; }
+.vmap-sheet .vmap-actions { display: flex; gap: 8px; margin-top: 10px; }
+.vmap-sheet .vmap-draft-note {
+  margin: 0 0 10px; padding: 6px 10px; font-size: 12px;
+  background: color-mix(in srgb, var(--vm-partial) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--vm-partial) 45%, transparent);
+  border-radius: var(--vm-radius); color: var(--vm-ink);
+}
+.vmap-sheet .vmap-slash { color: var(--vm-muted); }
+.vmap-sheet .vmap-file { display: flex; gap: 4px; align-items: center; }
+.vmap-sheet .vmap-file input { flex: 1; }
+.vmap-sheet input[type="color"] { width: 100%; height: 28px; padding: 0 2px; background: var(--vm-panel-2); border: 1px solid var(--vm-line-2); border-radius: var(--vm-radius); }
+
+.vmap-aspect {
+  display: flex; flex-direction: column; gap: 6px;
+  margin-bottom: 8px; padding: 8px;
+  background: var(--vm-panel); border: 1px solid var(--vm-line); border-radius: var(--vm-radius);
+}
+.vmap-aspect-head { display: flex; gap: 6px; align-items: center; }
+.vmap-aspect-head input[type="text"] { flex: 1; font-weight: 600; }
+.vmap-aspect-head input[type="number"] { width: 64px; text-align: center; }
+.vmap-aspect p { margin: 0; font-size: 13px; color: var(--vm-ink-2); }
+.vmap-chip { cursor: pointer; border: 1px solid var(--vm-line-2); }
+.vmap-chip:hover { border-color: var(--vm-accent); }
+
+/* Настройки атласа */
+.vmap-config { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.vmap-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--vm-line); margin-bottom: 10px; }
+.vmap-tab {
+  flex: none; width: auto; padding: 6px 12px; background: transparent; border: none;
+  border-bottom: 2px solid transparent; border-radius: 0; color: var(--vm-muted); cursor: pointer;
+}
+.vmap-tab.active { color: var(--vm-ink); border-bottom-color: var(--vm-accent); }
+.vmap-scroll { flex: 1; min-height: 0; overflow-y: auto; }
+.vmap-card { margin-bottom: 10px; padding: 10px; background: var(--vm-panel); border: 1px solid var(--vm-line); border-radius: var(--vm-radius); }
+.vmap-card-head { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
+.vmap-card-head input { flex: 1; font-weight: 600; }
+
+/* Заявки */
+.vmap-claims-body { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.vmap-claims-body input[type="text"] { width: 100%; margin: 8px 0 6px; }
+.vmap-toolbar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.vmap-claim {
+  margin-bottom: 10px; padding: 10px;
+  background: var(--vm-panel); border: 1px solid var(--vm-line); border-radius: var(--vm-radius);
+}
+.vmap-claim.selected { border-color: var(--vm-accent); }
+.vmap-claim[data-status="applied"], .vmap-claim[data-status="rejected"] { opacity: 0.7; }
+.vmap-claim-head { display: flex; gap: 8px; align-items: flex-start; }
+.vmap-claim-head input[type="checkbox"] { margin-top: 3px; }
+.vmap-claim-title { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.vmap-claim-title .v-hint { margin: 0; }
+.vmap-user { color: var(--user, var(--vm-ink)); font-weight: 600; }
+.vmap-claim-note, .vmap-claim-check, .vmap-claim-comment, .vmap-claim-conflict { margin: 6px 0 0; font-size: 13px; color: var(--vm-ink-2); }
+.vmap-claim-conflict { color: var(--vm-partial); }
+.vmap-outcome[data-outcome="success"] { color: var(--vm-success); }
+.vmap-outcome[data-outcome="partial"] { color: var(--vm-partial); }
+.vmap-outcome[data-outcome="failure"] { color: var(--vm-accent); }
+.vmap-claim-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.vmap-claim-actions:empty { display: none; }
+.vmap-ops { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.vmap-op { display: flex; align-items: center; gap: 8px; padding: 3px 4px 3px 0; font-size: 13px; }
+.vmap-op-mark {
+  flex: none; min-width: 70px; padding: 1px 8px; text-align: center;
+  font-size: 11px; border-radius: 999px; border: 1px solid currentColor;
+}
+.vmap-op[data-action-kind="create"] .vmap-op-mark { color: #5fcf6f; }
+.vmap-op[data-action-kind="update"] .vmap-op-mark { color: #e8c27a; }
+.vmap-op[data-action-kind="delete"] .vmap-op-mark { color: #ff6a5a; }
+.vmap-op-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vmap-op-name .v-hint { margin: 0; }
+.vmap-conflict { background: color-mix(in srgb, var(--vm-partial) 30%, transparent); }
+.vmap-settings { margin-top: 16px; padding-top: 10px; border-top: 1px solid var(--vm-line); }
+
+.vmap-dialog-field { display: flex; flex-direction: column; gap: 4px; margin: 6px 0; }
+.vmap-dialog-field textarea { width: 100%; }
+
+/* Страница в журнале */
+.vmap-page .vmap-page-body { padding: 4px 2px; }
+.vmap-page .vmap-page-head { margin-bottom: 12px; }
+.vmap-page .vmap-page-head h2 { margin: 2px 0 6px; border: none; }
+.vmap-page .v-rows li { font-size: 13px; }

@@ -1,0 +1,31 @@
+<article class="vmap-claim {{#if selected}}selected{{/if}}" data-status="{{status}}">
+  <header class="vmap-claim-head">
+    {{#if gm}}{{#if open}}<input type="checkbox" data-select="{{key}}" {{#if selected}}checked{{/if}}>{{/if}}{{/if}}
+    <div class="vmap-claim-title">
+      <b>{{title}}</b>
+      <span class="v-hint">{{#if gm}}<span class="vmap-user" style="--user: {{color}}">{{user}}</span> · {{/if}}{{sceneName}}</span>
+    </div>
+    <span class="v-tag {{#unless open}}lv{{/unless}}">{{statusLabel}}</span>
+  </header>
+  {{#if note}}<p class="vmap-claim-note">{{note}}</p>{{/if}}
+  {{#if difficulty}}<p class="vmap-claim-check">{{localize "VMAP.Check.difficulty"}}: <b>{{difficulty}}</b>{{#if outcomeLabel}} · <span class="vmap-outcome" data-outcome="{{outcome}}">{{outcomeLabel}}</span> ({{successes}}){{/if}}</p>{{/if}}
+  {{#if comment}}<p class="vmap-claim-comment"><i class="fa-solid fa-comment"></i> {{comment}}</p>{{/if}}
+  {{#if conflictCount}}<p class="vmap-claim-conflict"><i class="fa-solid fa-triangle-exclamation"></i> {{localize "VMAP.Claims.hasConflicts"}}</p>{{/if}}
+  <ul class="vmap-ops">
+    {{#each ops}}{{> vmapOp this}}{{/each}}
+  </ul>
+  <footer class="vmap-claim-actions">
+    {{#if gm}}
+      {{#if open}}
+      <button type="button" class="v-btn" data-action="preview" data-key="{{key}}" {{#if otherScene}}disabled{{/if}}><i class="fa-solid {{#if previewing}}fa-eye-slash{{else}}fa-eye{{/if}}"></i> {{localize "VMAP.Claims.preview"}}</button>
+      <button type="button" class="v-btn" data-action="check" data-key="{{key}}"><i class="fa-solid fa-dice-six"></i> {{localize "VMAP.Claims.check"}}</button>
+      <button type="button" class="v-btn v-btn-accent" data-action="apply" data-key="{{key}}"><i class="fa-solid fa-check"></i> {{localize "VMAP.Claims.apply"}}</button>
+      <button type="button" class="v-btn" data-action="reject" data-key="{{key}}"><i class="fa-solid fa-xmark"></i> {{localize "VMAP.Claims.reject"}}</button>
+      {{/if}}
+    {{else}}
+      {{#if needsRoll}}<button type="button" class="v-btn v-btn-accent" data-action="roll" data-message="{{messageId}}"><i class="fa-solid fa-dice-six"></i> {{localize "VMAP.Check.roll"}}</button>{{/if}}
+      {{#if rejected}}<button type="button" class="v-btn" data-action="returnDraft" data-id="{{id}}"><i class="fa-solid fa-rotate-left"></i> {{localize "VMAP.Claims.returnDraft"}}</button>{{/if}}
+      <button type="button" class="v-btn" data-action="drop" data-id="{{id}}"><i class="fa-solid fa-trash"></i> {{#if open}}{{localize "VMAP.Claims.withdraw"}}{{else}}{{localize "VMAP.Claims.remove"}}{{/if}}</button>
+    {{/if}}
+  </footer>
+</article>

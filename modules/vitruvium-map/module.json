@@ -1,0 +1,31 @@
+{
+  "id": "vitruvium-map",
+  "title": "Витрувий: карта мира",
+  "description": "Общая карта для политической игры богов: объекты, реки и дороги, области на гексах. Игроки предлагают правки заявками, мастер принимает их, отклоняет или назначает проверку Витрувия.",
+  "version": "0.3.0",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14.370",
+    "maximum": "14"
+  },
+  "authors": [{ "name": "4isfate", "url": "https://github.com/x4isfate" }],
+  "esmodules": ["scripts/main.mjs"],
+  "styles": ["styles/map.css"],
+  "languages": [
+    { "lang": "ru", "name": "Русский", "path": "lang/ru.json" },
+    { "lang": "en", "name": "English", "path": "lang/en.json" }
+  ],
+  "documentTypes": {
+    "JournalEntryPage": {
+      "feature": {}
+    }
+  },
+  "socket": true,
+  "relationships": {
+    "systems": [{ "id": "vitruvium", "type": "system", "compatibility": { "minimum": "0.2.5" } }]
+  },
+  "url": "https://github.com/x4isfate/vitruvium",
+  "manifest": "https://github.com/x4isfate/vitruvium/releases/latest/download/vitruvium-map.json",
+  "download": "https://github.com/x4isfate/vitruvium/releases/download/v0.3.0/vitruvium-map.zip",
+  "license": "LICENSE"
+}

@@ -1,0 +1,219 @@
+{
+  "VMAP": {
+    "Control": {
+      "title": "World map"
+    },
+    "Tool": {
+      "select": "Select",
+      "object": "Object",
+      "line": "Line",
+      "area": "Area",
+      "erase": "Eraser",
+      "claims": "Claims",
+      "atlas": "Types and layers"
+    },
+    "Hint": {
+      "select": "Click selects, double-click opens the sheet. Drag objects and line points. Delete removes.",
+      "object": "Click places an object and opens its sheet.",
+      "line": "Click adds a point, double-click finishes, right-click removes the last point.",
+      "area": "Drag over cells to paint them. Hold Alt to draw a freehand outline.",
+      "erase": "Select an area and drag over cells to erase. Hold Alt to cut a freehand outline."
+    },
+    "Kind": {
+      "object": "Object",
+      "line": "Line",
+      "area": "Area"
+    },
+    "Blend": {
+      "replace": "Replaces",
+      "overlay": "Overlay (disputed land)"
+    },
+    "Atlas": {
+      "name": "Atlas: {scene}",
+      "config": "Atlas types and layers",
+      "layers": "Layers",
+      "typesHint": "A type's look applies to all its features unless a feature overrides it.",
+      "layersHint": "Areas live on layers. A hidden layer is not drawn for anyone. The top layer in the list is drawn first.",
+      "addType": "New type",
+      "newType": "New type",
+      "removeType": "Delete type",
+      "removeTypeConfirm": "Delete type “{name}”? Its features stay and fall back to the default look.",
+      "addLayer": "New layer",
+      "newLayer": "New layer",
+      "removeLayer": "Delete layer",
+      "removeLayerConfirm": "Delete layer “{name}”? Its areas stay but belong to no layer.",
+      "toggleLayer": "Show or hide",
+      "lastLayer": "At least one layer is required."
+    },
+    "Feature": {
+      "unnamed": "Unnamed",
+      "name": "Name",
+      "type": "Type",
+      "layer": "Layer",
+      "blend": "Blend",
+      "sort": "Order",
+      "demiurge": "Demiurge",
+      "description": "Description",
+      "statuses": "Statuses",
+      "addStatus": "Status",
+      "noStatuses": "No statuses.",
+      "statusName": "Status",
+      "addLevel": "Add levels",
+      "removeLevel": "Remove levels",
+      "toAspect": "Make an aspect",
+      "aspects": "Aspects",
+      "addAspect": "Aspect",
+      "noAspects": "No aspects.",
+      "aspectName": "Aspect",
+      "aspectDescription": "What it means",
+      "links": "Links",
+      "addLink": "Link",
+      "role": "Kind of link: capital, source, alliance…",
+      "backlinks": "Linked from:",
+      "inside": "On this land:",
+      "insideNone": "No objects on this land.",
+      "style": "Own look",
+      "styleHint": "An empty field uses the type's value.",
+      "styleReset": "Same as type",
+      "pan": "Show",
+      "showOnMap": "On the map",
+      "delete": "Delete",
+      "deleteConfirm": "Delete “{name}”?",
+      "remove": "Remove",
+      "pending": "Waiting for the GM: {what}"
+    },
+    "Style": {
+      "icon": "Icon",
+      "color": "Color",
+      "size": "Size",
+      "labelSize": "Label size",
+      "widthStart": "Start width",
+      "widthEnd": "End width",
+      "dash": "Dash",
+      "gap": "Gap",
+      "meander": "Meander",
+      "outlineWidth": "Outline",
+      "outlineColor": "Outline color",
+      "alpha": "Fill opacity",
+      "borderColor": "Border color",
+      "borderWidth": "Border width"
+    },
+    "Field": {
+      "name": "name",
+      "text": "description",
+      "type": "type",
+      "demiurge": "demiurge",
+      "statuses": "statuses",
+      "aspects": "aspects",
+      "geometry": "shape",
+      "style": "look",
+      "layer": "layer",
+      "links": "links"
+    },
+    "Draft": {
+      "create": "New",
+      "update": "Edit",
+      "delete": "Removal"
+    },
+    "Conflict": {
+      "exists": "already created",
+      "missing": "already deleted",
+      "stale": "changed since the claim"
+    },
+    "ClaimStatus": {
+      "pending": "Waiting for GM",
+      "check": "Check needed",
+      "rolled": "Rolled",
+      "rejected": "Rejected",
+      "applied": "Accepted"
+    },
+    "Outcome": {
+      "success": "success",
+      "partial": "partial success",
+      "failure": "failure"
+    },
+    "Palette": {
+      "finishLine": "Finish line",
+      "open": "Open",
+      "queue": "Claims: {n}",
+      "draft": "Draft: {n}"
+    },
+    "Claims": {
+      "title": "Claims",
+      "draft": "Draft",
+      "draftEmpty": "The draft is empty. Everything you change on the map lands here; the GM sees it only after you submit.",
+      "emptyDraft": "The draft has no changes.",
+      "discardDraft": "Discard",
+      "discardConfirm": "Discard all draft changes?",
+      "discardOp": "Remove from draft",
+      "claimTitle": "Claim title, e.g. “The hill folk come to the valley”",
+      "claimNote": "What you want and why it is possible",
+      "submit": "Send to GM",
+      "untitled": "Claim",
+      "mine": "My claims",
+      "noneMine": "No claims yet.",
+      "clearClosed": "Clear closed",
+      "returnDraft": "Back to draft",
+      "withdraw": "Withdraw",
+      "withdrawConfirm": "Withdraw the claim? Its changes will be lost.",
+      "remove": "Remove",
+      "selectAll": "All",
+      "preview": "On the map",
+      "apply": "Accept",
+      "applySelected": "Accept",
+      "reject": "Reject",
+      "rejectSelected": "Reject",
+      "rejectReason": "Reason (the player will see it)",
+      "check": "Check",
+      "showClosed": "Closed",
+      "hideClosed": "Open only",
+      "queueEmpty": "The queue is empty.",
+      "hasConflicts": "Some changes disagree with the map.",
+      "conflictsTitle": "The map has changed",
+      "conflictsText": "These changes were made against an older map:",
+      "applyAnyway": "Apply over",
+      "skipStale": "Skip them",
+      "appliedN": "Claims accepted: {n}.",
+      "newClaim": "New claim from {name}.",
+      "rules": "Queue rules",
+      "trustedHint": "Claims from trusted players are accepted at once:",
+      "noPlayers": "No players.",
+      "youApplied": "Claim “{title}” accepted.",
+      "youRejected": "Claim “{title}” rejected.",
+      "youCheck": "Claim “{title}” needs a check."
+    },
+    "Check": {
+      "card": "Claim check",
+      "speaker": "World map",
+      "title": "Claim check",
+      "difficulty": "Difficulty",
+      "difficultyHint": "As in Vitruvium: 1 is easy, 6 is nearly impossible. Weigh what the world already holds.",
+      "note": "Note for the player",
+      "send": "Post to chat",
+      "changes": "Changes",
+      "roll": "Roll",
+      "noActor": "A character is needed: select a token or assign a character to the user.",
+      "noSystem": "Vitruvium checks are unavailable.",
+      "notYours": "The claim's author rolls.",
+      "cardMissing": "The check card is not in the chat."
+    },
+    "Notify": {
+      "noAtlas": "This scene has no atlas yet. The GM creates it by opening the map.",
+      "featureMissing": "The feature is no longer on the map.",
+      "selectAreaToErase": "Select the area to erase first."
+    },
+    "Sheet": {
+      "page": "Map feature"
+    },
+    "Settings": {
+      "autoApplyOnSuccess": {
+        "name": "Accept a claim on success",
+        "hint": "If a claim check succeeds, its changes go on the map at once. The GM decides partial successes and failures."
+      },
+      "renderBelowTokens": {
+        "name": "Draw the map below tokens",
+        "hint": "Experimental. The map sits between the background and tokens instead of above the scene."
+      }
+    }
+  }
+}

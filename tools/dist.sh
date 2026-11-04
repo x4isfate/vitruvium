@@ -1,5 +1,6 @@
 #!/bin/sh
-# Собирает архивы для релиза: dist/vitruvium.zip + system.json, dist/vitruvium-dice.zip + module.json.
+# Собирает архивы для релиза: dist/vitruvium.zip + system.json, dist/vitruvium-dice.zip + module.json,
+# dist/vitruvium-map.zip + vitruvium-map.json.
 set -e
 cd "$(dirname "$0")/.."
 rm -rf dist && mkdir -p dist
@@ -9,4 +10,8 @@ rm system/LICENSE system/README.md system/CHANGELOG.md
 cp system/system.json dist/system.json
 (cd modules/vitruvium-dice && zip -qr ../../dist/vitruvium-dice.zip . -x "textures/*.svg")
 cp modules/vitruvium-dice/module.json dist/module.json
+cp LICENSE modules/vitruvium-map/
+(cd modules/vitruvium-map && zip -qr ../../dist/vitruvium-map.zip .)
+rm modules/vitruvium-map/LICENSE
+cp modules/vitruvium-map/module.json dist/vitruvium-map.json
 ls -la dist

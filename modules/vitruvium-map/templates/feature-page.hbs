@@ -1,0 +1,33 @@
+<article class="vmap-page-body">
+  <header class="vmap-page-head">
+    <span class="v-eyebrow">{{feature.kindLabel}}{{#if feature.typeName}} · {{feature.typeName}}{{/if}}{{#if feature.layerName}} · {{feature.layerName}}{{/if}}</span>
+    <h2>{{feature.name}}</h2>
+    {{#if feature.demiurge}}<p class="v-hint">{{localize "VMAP.Feature.demiurge"}}: <b>{{feature.demiurge}}</b></p>{{/if}}
+    {{#if feature.onScene}}<button type="button" class="v-btn" data-action="showOnMap"><i class="fa-solid fa-map-location-dot"></i> {{localize "VMAP.Feature.showOnMap"}}</button>{{/if}}
+  </header>
+  {{#if feature.description}}<div class="v-rich">{{{feature.description}}}</div>{{/if}}
+  {{#if feature.statuses.length}}
+  <section class="v-block">
+    <span class="v-eyebrow">{{localize "VMAP.Feature.statuses"}}</span>
+    <div class="v-tags">{{#each feature.statuses}}<span class="v-tag lv">{{this}}</span>{{/each}}</div>
+  </section>
+  {{/if}}
+  {{#if feature.aspects.length}}
+  <section class="v-block">
+    <span class="v-eyebrow">{{localize "VMAP.Feature.aspects"}}</span>
+    {{#each feature.aspects}}
+    <div class="vmap-aspect">
+      <b>{{label}}</b>
+      {{#if description}}<p>{{description}}</p>{{/if}}
+      {{#if statuses.length}}<div class="v-tags">{{#each statuses}}<span class="v-tag lv">{{this}}</span>{{/each}}</div>{{/if}}
+    </div>
+    {{/each}}
+  </section>
+  {{/if}}
+  {{#if feature.links.length}}
+  <section class="v-block">
+    <span class="v-eyebrow">{{localize "VMAP.Feature.links"}}</span>
+    <ul class="v-rows">{{#each feature.links}}<li>{{name}}{{#if role}} <span class="v-hint">· {{role}}</span>{{/if}}</li>{{/each}}</ul>
+  </section>
+  {{/if}}
+</article>

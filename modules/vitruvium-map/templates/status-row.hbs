@@ -1,0 +1,13 @@
+<li data-status="{{path}}.{{index}}">
+  <input type="text" data-f="name" value="{{name}}" placeholder="{{localize "VMAP.Feature.statusName"}}">
+  {{#if hasLevel}}
+  <input type="number" data-f="value" value="{{value}}" step="1">
+  <span class="vmap-slash">/</span>
+  <input type="number" data-f="max" value="{{max}}" step="1">
+  {{/if}}
+  <button type="button" class="v-icon-btn" data-action="toggleLevel" data-path="{{path}}" data-index="{{index}}"
+    data-tooltip="{{#if hasLevel}}{{localize "VMAP.Feature.removeLevel"}}{{else}}{{localize "VMAP.Feature.addLevel"}}{{/if}}">
+    <i class="fa-solid {{#if hasLevel}}fa-signal{{else}}fa-plus-minus{{/if}}"></i></button>
+  {{#if toAspect}}<button type="button" class="v-icon-btn" data-action="toAspect" data-index="{{index}}" data-tooltip="{{localize "VMAP.Feature.toAspect"}}"><i class="fa-solid fa-gem"></i></button>{{/if}}
+  <button type="button" class="v-icon-btn" data-action="removeStatus" data-path="{{path}}" data-index="{{index}}" data-tooltip="{{localize "VMAP.Feature.remove"}}"><i class="fa-solid fa-xmark"></i></button>
+</li>

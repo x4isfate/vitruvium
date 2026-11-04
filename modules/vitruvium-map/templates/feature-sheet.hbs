@@ -1,0 +1,138 @@
+<div class="vmap-sheet-body">
+  {{#if status}}<p class="vmap-draft-note"><i class="fa-solid fa-hourglass-half"></i> {{status}}</p>{{/if}}
+
+  <section class="v-block vmap-head">
+    <input type="text" name="name" value="{{s.name}}" placeholder="{{localize "VMAP.Feature.name"}}" class="vmap-name">
+    <div class="vmap-grid">
+      <label>{{localize "VMAP.Feature.type"}}
+        <select name="typeId">
+          {{#each types}}<option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}}</option>{{/each}}
+        </select>
+      </label>
+      <label>{{localize "VMAP.Feature.demiurge"}}
+        <select name="demiurge">
+          <option value="">—</option>
+          {{#each demiurges}}<option value="{{uuid}}" {{#if selected}}selected{{/if}}>{{name}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if isArea}}
+      <label>{{localize "VMAP.Feature.layer"}}
+        <select name="layerId">
+          {{#each layers}}<option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}}</option>{{/each}}
+        </select>
+      </label>
+      <label>{{localize "VMAP.Feature.blend"}}
+        <select name="blend">
+          {{#each blends}}<option value="{{id}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+        </select>
+      </label>
+      <label>{{localize "VMAP.Feature.sort"}}
+        <input type="number" name="sort" value="{{sys.sort}}" step="1">
+      </label>
+      {{/if}}
+    </div>
+    <div class="vmap-actions">
+      <button type="button" class="v-btn" data-action="pan"><i class="fa-solid fa-crosshairs"></i> {{localize "VMAP.Feature.pan"}}</button>
+      <button type="button" class="v-btn" data-action="deleteFeature"><i class="fa-solid fa-trash"></i> {{localize "VMAP.Feature.delete"}}</button>
+    </div>
+  </section>
+
+  <section class="v-block">
+    <span class="v-eyebrow">{{localize "VMAP.Feature.description"}}</span>
+    <textarea name="text" rows="5">{{s.text}}</textarea>
+  </section>
+
+  <section class="v-block">
+    <div class="v-pane-head">
+      <span class="v-eyebrow">{{localize "VMAP.Feature.statuses"}}</span>
+      <button type="button" class="v-btn" data-action="addStatus" data-path="statuses"><i class="fa-solid fa-plus"></i> {{localize "VMAP.Feature.addStatus"}}</button>
+    </div>
+    {{#unless statuses.length}}<p class="v-empty">{{localize "VMAP.Feature.noStatuses"}}</p>{{/unless}}
+    <ul class="v-rows v-level-row">
+      {{#each statuses}}{{> vmapStatus this toAspect=true}}{{/each}}
+    </ul>
+  </section>
+
+  <section class="v-block">
+    <div class="v-pane-head">
+      <span class="v-eyebrow">{{localize "VMAP.Feature.aspects"}}</span>
+      <button type="button" class="v-btn" data-action="addAspect"><i class="fa-solid fa-plus"></i> {{localize "VMAP.Feature.addAspect"}}</button>
+    </div>
+    {{#unless aspects.length}}<p class="v-empty">{{localize "VMAP.Feature.noAspects"}}</p>{{/unless}}
+    {{#each aspects}}
+    <div class="vmap-aspect" data-aspect="{{index}}">
+      <div class="vmap-aspect-head v-level-row">
+        <input type="text" data-af="name" value="{{name}}" placeholder="{{localize "VMAP.Feature.aspectName"}}">
+        {{#if hasLevel}}
+        <input type="number" data-af="value" value="{{value}}" step="1">
+        <span class="vmap-slash">/</span>
+        <input type="number" data-af="max" value="{{max}}" step="1">
+        {{/if}}
+        <button type="button" class="v-icon-btn" data-action="toggleLevel" data-path="aspect" data-index="{{index}}"
+          data-tooltip="{{#if hasLevel}}{{localize "VMAP.Feature.removeLevel"}}{{else}}{{localize "VMAP.Feature.addLevel"}}{{/if}}">
+          <i class="fa-solid {{#if hasLevel}}fa-signal{{else}}fa-plus-minus{{/if}}"></i></button>
+        <button type="button" class="v-icon-btn" data-action="removeAspect" data-index="{{index}}" data-tooltip="{{localize "VMAP.Feature.remove"}}"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <textarea data-af="description" rows="2" placeholder="{{localize "VMAP.Feature.aspectDescription"}}">{{description}}</textarea>
+      <ul class="v-rows v-level-row">
+        {{#each statuses}}{{> vmapStatus this}}{{/each}}
+      </ul>
+      <button type="button" class="v-btn" data-action="addStatus" data-path="aspects.{{index}}.statuses"><i class="fa-solid fa-plus"></i> {{localize "VMAP.Feature.addStatus"}}</button>
+    </div>
+    {{/each}}
+  </section>
+
+  <section class="v-block">
+    <div class="v-pane-head">
+      <span class="v-eyebrow">{{localize "VMAP.Feature.links"}}</span>
+      <button type="button" class="v-btn" data-action="addLink"><i class="fa-solid fa-link"></i> {{localize "VMAP.Feature.addLink"}}</button>
+    </div>
+    <ul class="v-rows">
+      {{#each links}}
+      <li data-link="{{index}}">
+        <select data-f="target">
+          <option value="">—</option>
+          {{#each options}}<option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}}</option>{{/each}}
+        </select>
+        <input type="text" data-f="role" value="{{role}}" placeholder="{{localize "VMAP.Feature.role"}}">
+        {{#if target}}<button type="button" class="v-icon-btn" data-action="openLink" data-id="{{target}}" data-tooltip="{{localize "VMAP.Palette.open"}}"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>{{/if}}
+        <button type="button" class="v-icon-btn" data-action="removeLink" data-index="{{index}}" data-tooltip="{{localize "VMAP.Feature.remove"}}"><i class="fa-solid fa-xmark"></i></button>
+      </li>
+      {{/each}}
+    </ul>
+    {{#if backlinks.length}}
+    <p class="v-hint">{{localize "VMAP.Feature.backlinks"}}</p>
+    <div class="v-tags">
+      {{#each backlinks}}<button type="button" class="v-tag lv vmap-chip" data-action="openLink" data-id="{{id}}">{{name}}{{#if role}} · {{role}}{{/if}}</button>{{/each}}
+    </div>
+    {{/if}}
+    {{#if isArea}}
+    <p class="v-hint">{{localize "VMAP.Feature.inside"}}</p>
+    {{#if inside.length}}
+    <div class="v-tags">
+      {{#each inside}}<button type="button" class="v-tag lv vmap-chip" data-action="openLink" data-id="{{id}}">{{name}}</button>{{/each}}
+    </div>
+    {{else}}<p class="v-empty">{{localize "VMAP.Feature.insideNone"}}</p>{{/if}}
+    {{/if}}
+  </section>
+
+  <section class="v-block">
+    <div class="v-pane-head">
+      <span class="v-eyebrow">{{localize "VMAP.Feature.style"}}</span>
+      <button type="button" class="v-btn" data-action="clearStyle"><i class="fa-solid fa-rotate-left"></i> {{localize "VMAP.Feature.styleReset"}}</button>
+    </div>
+    <p class="v-hint">{{localize "VMAP.Feature.styleHint"}}</p>
+    <div class="vmap-grid">
+      {{#each style}}
+      <label>{{label}}
+        {{#if isIcon}}
+        <span class="vmap-file"><input type="text" name="style.{{key}}" value="{{value}}" placeholder="{{placeholder}}">
+          <button type="button" class="v-icon-btn" data-action="pickIcon"><i class="fa-solid fa-file-image"></i></button></span>
+        {{else}}
+        <input type="{{#if (eq input "number")}}number{{else}}text{{/if}}" name="style.{{key}}" value="{{value}}" placeholder="{{placeholder}}" step="any">
+        {{/if}}
+      </label>
+      {{/each}}
+    </div>
+  </section>
+</div>

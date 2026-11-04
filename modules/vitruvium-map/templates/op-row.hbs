@@ -1,0 +1,7 @@
+<li class="vmap-op" data-action-kind="{{action}}">
+  <span class="vmap-op-mark">{{actionLabel}}</span>
+  <span class="vmap-op-name"><b>{{name}}</b> <span class="v-hint">{{kindLabel}}{{#if fields}} · {{fields}}{{/if}}</span></span>
+  {{#if conflict}}<span class="v-tag vmap-conflict">{{conflict}}</span>{{/if}}
+  {{#if canPan}}<button type="button" class="v-icon-btn" data-action="pan" data-id="{{id}}" data-tooltip="{{localize "VMAP.Feature.pan"}}"><i class="fa-solid fa-crosshairs"></i></button>{{/if}}
+  {{#if discard}}<button type="button" class="v-icon-btn" data-action="discardOp" data-id="{{id}}" data-tooltip="{{localize "VMAP.Claims.discardOp"}}"><i class="fa-solid fa-xmark"></i></button>{{/if}}
+</li>

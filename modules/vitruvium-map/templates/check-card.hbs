@@ -1,0 +1,12 @@
+<div class="vitruvium-card request vmap-check-card">
+  <header class="vc-head">
+    <span class="vc-eyebrow">{{localize "VMAP.Check.card"}}</span>
+    <h3>{{title}}</h3>
+    <p class="vc-sub">{{player}}{{#if note}} · {{note}}{{/if}}</p>
+  </header>
+  <ul class="vc-facts">
+    <li>{{localize "VMAP.Check.difficulty"}}: <b>{{difficulty}}</b></li>
+    <li>{{localize "VMAP.Check.changes"}}: <b>{{count}}</b></li>
+  </ul>
+  <button type="button" class="vc-button" data-vmap-claim-roll><i class="fa-solid fa-dice-six"></i> {{localize "VMAP.Check.roll"}}</button>
+</div>

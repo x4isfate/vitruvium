@@ -1,0 +1,49 @@
+<div class="vmap-claims-body">
+  <div class="vmap-scroll">
+  {{#if isGM}}
+    <div class="vmap-toolbar">
+      <button type="button" class="v-btn" data-action="selectAll"><i class="fa-solid fa-check-double"></i> {{localize "VMAP.Claims.selectAll"}}</button>
+      <button type="button" class="v-btn" data-action="preview" {{#unless anySelected}}disabled{{/unless}}><i class="fa-solid fa-eye"></i> {{localize "VMAP.Claims.preview"}}</button>
+      <button type="button" class="v-btn v-btn-accent" data-action="apply" {{#unless anySelected}}disabled{{/unless}}><i class="fa-solid fa-check"></i> {{localize "VMAP.Claims.applySelected"}}{{#if anySelected}} ({{selectedCount}}){{/if}}</button>
+      <button type="button" class="v-btn" data-action="reject" {{#unless anySelected}}disabled{{/unless}}><i class="fa-solid fa-xmark"></i> {{localize "VMAP.Claims.rejectSelected"}}</button>
+      <button type="button" class="v-btn" data-action="toggleClosed"><i class="fa-solid fa-clock-rotate-left"></i> {{#if showClosed}}{{localize "VMAP.Claims.hideClosed"}}{{else}}{{localize "VMAP.Claims.showClosed"}}{{/if}}</button>
+    </div>
+    {{#unless claims.length}}<p class="v-empty">{{localize "VMAP.Claims.queueEmpty"}}</p>{{/unless}}
+    {{#each claims}}{{> vmapClaim this gm=true}}{{/each}}
+
+    <section class="v-block vmap-settings">
+      <span class="v-eyebrow">{{localize "VMAP.Claims.rules"}}</span>
+      <label class="v-check"><input type="checkbox" data-setting="autoApply" {{#if autoApply}}checked{{/if}}> {{localize "VMAP.Settings.autoApplyOnSuccess.name"}}</label>
+      <p class="v-hint">{{localize "VMAP.Claims.trustedHint"}}</p>
+      {{#each players}}
+      <label class="v-check"><input type="checkbox" data-trusted="{{id}}" {{#if trusted}}checked{{/if}}> {{name}}</label>
+      {{else}}<p class="v-empty">{{localize "VMAP.Claims.noPlayers"}}</p>{{/each}}
+    </section>
+  {{else}}
+    <section class="v-block">
+      <div class="v-pane-head">
+        <span class="v-eyebrow">{{localize "VMAP.Claims.draft"}}</span>
+        {{#if hasDraft}}<button type="button" class="v-btn" data-action="discardDraft"><i class="fa-solid fa-trash"></i> {{localize "VMAP.Claims.discardDraft"}}</button>{{/if}}
+      </div>
+      {{#if hasDraft}}
+      <ul class="vmap-ops">
+        {{#each draft}}{{> vmapOp this discard=true}}{{/each}}
+      </ul>
+      <input type="text" data-form="title" value="{{form.title}}" placeholder="{{localize "VMAP.Claims.claimTitle"}}">
+      <textarea data-form="note" rows="3" placeholder="{{localize "VMAP.Claims.claimNote"}}">{{form.note}}</textarea>
+      <button type="button" class="v-btn v-btn-accent wide" data-action="submit"><i class="fa-solid fa-paper-plane"></i> {{localize "VMAP.Claims.submit"}}</button>
+      {{else}}
+      <p class="v-empty">{{localize "VMAP.Claims.draftEmpty"}}</p>
+      {{/if}}
+    </section>
+
+    <section class="v-block">
+      <div class="v-pane-head">
+        <span class="v-eyebrow">{{localize "VMAP.Claims.mine"}}</span>
+        {{#if anyClosed}}<button type="button" class="v-btn" data-action="clearClosed"><i class="fa-solid fa-broom"></i> {{localize "VMAP.Claims.clearClosed"}}</button>{{/if}}
+      </div>
+      {{#each claims}}{{> vmapClaim this}}{{else}}<p class="v-empty">{{localize "VMAP.Claims.noneMine"}}</p>{{/each}}
+    </section>
+  {{/if}}
+  </div>
+</div>

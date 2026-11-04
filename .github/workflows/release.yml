@@ -43,14 +43,16 @@ jobs:
           SYS=$(node -p "require('./system/system.json').version")
           MOD=$(node -p "require('./modules/vitruvium-dice/module.json').version")
           test "$TAG" = "$SYS" || { echo "system.json: $SYS, тег: $TAG"; exit 1; }
+          MAP=$(node -p "require('./modules/vitruvium-map/module.json').version")
           test "$TAG" = "$MOD" || { echo "module.json: $MOD, тег: $TAG"; exit 1; }
+          test "$TAG" = "$MAP" || { echo "vitruvium-map/module.json: $MAP, тег: $TAG"; exit 1; }
       - run: npm run dist
       - name: Релиз
         env:
           GH_TOKEN: ${{ github.token }}
           TAG_NAME: ${{ steps.tag.outputs.name }}
         run: |
-          FILES="dist/vitruvium.zip dist/system.json dist/vitruvium-dice.zip dist/module.json"
+          FILES="dist/vitruvium.zip dist/system.json dist/vitruvium-dice.zip dist/module.json dist/vitruvium-map.zip dist/vitruvium-map.json"
           if gh release view "$TAG_NAME" >/dev/null 2>&1; then
             gh release upload "$TAG_NAME" $FILES --clobber
           else

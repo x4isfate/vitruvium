@@ -1,0 +1,50 @@
+<div class="vmap-config">
+  <nav class="vmap-tabs">
+    {{#each tabs}}<button type="button" class="vmap-tab {{#if active}}active{{/if}}" data-action="tab" data-tab="{{id}}">{{label}}</button>{{/each}}
+  </nav>
+  <div class="vmap-scroll">
+    {{#if kind}}
+    <p class="v-hint">{{localize "VMAP.Atlas.typesHint"}}</p>
+    {{#each types}}
+    <div class="vmap-card">
+      <div class="vmap-card-head">
+        <input type="text" data-type="{{index}}" data-key="name" value="{{name}}">
+        <button type="button" class="v-icon-btn" data-action="removeType" data-index="{{index}}" data-tooltip="{{localize "VMAP.Atlas.removeType"}}"><i class="fa-solid fa-trash"></i></button>
+      </div>
+      <div class="vmap-grid">
+        {{#each fields}}
+        <label>{{label}}
+          {{#if isIcon}}
+          <span class="vmap-file"><input type="text" data-type="{{../index}}" data-key="{{key}}" value="{{value}}">
+            <button type="button" class="v-icon-btn" data-action="pickIcon" data-index="{{../index}}"><i class="fa-solid fa-file-image"></i></button></span>
+          {{else if isColor}}
+          <input type="color" data-type="{{../index}}" data-key="{{key}}" value="{{value}}">
+          {{else}}
+          <input type="number" data-type="{{../index}}" data-key="{{key}}" value="{{value}}" step="any">
+          {{/if}}
+        </label>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+    <button type="button" class="v-btn wide" data-action="addType"><i class="fa-solid fa-plus"></i> {{localize "VMAP.Atlas.addType"}}</button>
+    {{/if}}
+
+    {{#if isLayers}}
+    <p class="v-hint">{{localize "VMAP.Atlas.layersHint"}}</p>
+    <ul class="v-rows">
+      {{#each layers}}
+      <li>
+        <button type="button" class="v-icon-btn" data-action="toggleLayer" data-index="{{index}}" data-tooltip="{{localize "VMAP.Atlas.toggleLayer"}}">
+          <i class="fa-solid {{#if hidden}}fa-eye-slash{{else}}fa-eye{{/if}}"></i></button>
+        <input type="text" data-layer="{{index}}" value="{{name}}">
+        <button type="button" class="v-icon-btn" data-action="moveLayer" data-index="{{index}}" data-dir="-1" {{#if first}}disabled{{/if}}><i class="fa-solid fa-arrow-up"></i></button>
+        <button type="button" class="v-icon-btn" data-action="moveLayer" data-index="{{index}}" data-dir="1" {{#if last}}disabled{{/if}}><i class="fa-solid fa-arrow-down"></i></button>
+        <button type="button" class="v-icon-btn" data-action="removeLayer" data-index="{{index}}" data-tooltip="{{localize "VMAP.Atlas.removeLayer"}}"><i class="fa-solid fa-trash"></i></button>
+      </li>
+      {{/each}}
+    </ul>
+    <button type="button" class="v-btn wide" data-action="addLayer"><i class="fa-solid fa-plus"></i> {{localize "VMAP.Atlas.addLayer"}}</button>
+    {{/if}}
+  </div>
+</div>
