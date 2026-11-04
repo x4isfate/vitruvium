@@ -2,7 +2,7 @@
   "id": "vitruvium",
   "title": "Витрувий",
   "description": "Система «ВИТРУВИЙ» (Beta 3.1) для Foundry VTT: лист персонажа, проверки характеристик особыми кубиками, домены, атрибуты, имущество, статусы, уровни и аспекты.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "compatibility": {
     "minimum": "14",
     "verified": "14.370",
@@ -44,7 +44,7 @@
   "initiative": "0",
   "url": "https://github.com/x4isfate/vitruvium",
   "manifest": "https://github.com/x4isfate/vitruvium/releases/latest/download/system.json",
-  "download": "https://github.com/x4isfate/vitruvium/releases/download/v0.2.1/vitruvium.zip",
+  "download": "https://github.com/x4isfate/vitruvium/releases/download/v0.2.2/vitruvium.zip",
   "license": "LICENSE",
   "readme": "README.md",
   "changelog": "CHANGELOG.md"
