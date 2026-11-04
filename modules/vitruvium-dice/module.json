@@ -1,8 +1,8 @@
 {
   "id": "vitruvium-dice",
-  "title": "Vitruvium: Dice · Витрувий: кубики",
-  "description": "Special 3D dice for VITRUVIUM in Dice So Nice: black body, cream faceted success symbols. / Объёмные особые кубики «ВИТРУВИЯ» для Dice So Nice.",
-  "version": "0.2.4",
+  "title": "Витрувий: кубики",
+  "description": "Объёмные особые кубики «ВИТРУВИЯ» для Dice So Nice: чёрный корпус, кремовые гранёные символы успеха.",
+  "version": "0.2.5",
   "compatibility": {
     "minimum": "14",
     "verified": "14.370",
@@ -11,11 +11,11 @@
   "authors": [{ "name": "4isfate", "url": "https://github.com/x4isfate" }],
   "esmodules": ["scripts/dsn.mjs"],
   "relationships": {
-    "systems": [{ "id": "vitruvium", "type": "system", "compatibility": { "minimum": "0.2.4" } }],
+    "systems": [{ "id": "vitruvium", "type": "system", "compatibility": { "minimum": "0.2.5" } }],
     "requires": [{ "id": "dice-so-nice", "type": "module" }]
   },
   "url": "https://github.com/x4isfate/vitruvium",
   "manifest": "https://github.com/x4isfate/vitruvium/releases/latest/download/module.json",
-  "download": "https://github.com/x4isfate/vitruvium/releases/download/v0.2.4/vitruvium-dice.zip",
+  "download": "https://github.com/x4isfate/vitruvium/releases/download/v0.2.5/vitruvium-dice.zip",
   "license": "LICENSE"
 }
