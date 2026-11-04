@@ -9,7 +9,7 @@
     "maximum": "14"
   },
   "authors": [
-    { "name": "George", "discord": "", "flags": {} }
+    { "name": "4isfate", "url": "https://github.com/x4isfate", "flags": {} }
   ],
   "media": [
     { "type": "setup", "url": "systems/vitruvium/assets/cover.png", "thumbnail": "systems/vitruvium/assets/cover.png", "loop": false, "flags": {} },

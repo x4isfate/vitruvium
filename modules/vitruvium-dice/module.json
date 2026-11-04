@@ -8,7 +8,7 @@
     "verified": "14.370",
     "maximum": "14"
   },
-  "authors": [{ "name": "George" }],
+  "authors": [{ "name": "4isfate", "url": "https://github.com/x4isfate" }],
   "esmodules": ["scripts/dsn.mjs"],
   "relationships": {
     "systems": [{ "id": "vitruvium", "type": "system", "compatibility": { "minimum": "0.2.4" } }],
