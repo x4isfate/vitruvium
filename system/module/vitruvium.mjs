@@ -8,6 +8,7 @@ import { VitruviumActor, VitruviumItem } from "./documents/documents.mjs";
 import VitruviumActorSheet from "./sheets/actor-sheet.mjs";
 import VitruviumItemSheet from "./sheets/item-sheet.mjs";
 import WelcomeWindow, { WelcomeMenu } from "./apps/welcome.mjs";
+import StatsWindow from "./apps/stats.mjs";
 
 Hooks.once("init", () => {
   console.log("Vitruvium | init");
@@ -74,7 +75,8 @@ Hooks.once("init", () => {
     requestCheck,
     findForbiddenDie,
     welcome: () => new WelcomeWindow().render(true),
-    apps: { WelcomeWindow, VitruviumActorSheet, VitruviumItemSheet }
+    apps: { WelcomeWindow, StatsWindow, VitruviumActorSheet, VitruviumItemSheet },
+    stats: actor => StatsWindow.open(actor)
   };
 
   Hooks.callAll("vitruvium.init", game.vitruvium);

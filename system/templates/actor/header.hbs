@@ -11,8 +11,8 @@
       {{else}}
       <h1 class="v-name">{{actor.name}}</h1>
       {{/if}}
-      <button type="button" class="v-mode" data-action="toggleMode" data-tooltip="{{#if compact}}{{localize 'VITRUVIUM.Sheet.detailed'}}{{else}}{{localize 'VITRUVIUM.Sheet.compact'}}{{/if}}">
-        {{#if compact}}{{localize 'VITRUVIUM.Sheet.detailed'}}{{else}}{{localize 'VITRUVIUM.Sheet.compact'}}{{/if}}
+      <button type="button" class="v-mode" data-action="openStats" data-tooltip="{{localize 'VITRUVIUM.Sheet.statsHint'}}">
+        <i class="fa-solid fa-table-list"></i> {{localize 'VITRUVIUM.Sheet.stats'}}
       </button>
     </div>
 
@@ -28,14 +28,11 @@
         <span class="v-eyebrow">{{localize 'VITRUVIUM.Level.title'}}</span>
         <div class="v-seg" role="group">
           {{#each levels}}
-          <button type="button" class="{{#if active}}active{{/if}}" data-action="setLevel" data-level="{{key}}" data-tooltip="{{label}}" {{#unless ../editable}}disabled{{/unless}}>{{points}}</button>
+          <button type="button" class="{{#if active}}active{{/if}}" data-action="setLevel" data-level="{{key}}" data-tooltip="{{label}}. {{hint}}" {{#unless ../editable}}disabled{{/unless}}>{{points}}</button>
           {{/each}}
         </div>
       </div>
     </div>
-    {{#if currentLevel}}
-    <p class="v-level-hint"><b>{{currentLevel.label}}.</b> {{currentLevel.hint}}</p>
-    {{/if}}
     {{/if}}
   </div>
 </header>
@@ -67,12 +64,10 @@
 </section>
 
 {{#if budget}}
-{{#unless compact}}
 <section class="v-budget" data-tooltip="{{localize 'VITRUVIUM.Budget.hint'}}">
   {{#each budget}}
   <span class="v-chip {{#if over}}over{{/if}}">{{label}} <b>{{value}}</b> {{localize 'VITRUVIUM.Budget.of'}} {{max}}</span>
   {{/each}}
 </section>
-{{/unless}}
 {{/if}}
 </div>

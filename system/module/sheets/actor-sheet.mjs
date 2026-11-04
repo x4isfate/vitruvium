@@ -1,3 +1,4 @@
+import StatsWindow from "../apps/stats.mjs";
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 const TextEditor = () => foundry.applications.ux.TextEditor.implementation;
@@ -68,7 +69,7 @@ export default class VitruviumActorSheet extends HandlebarsApplicationMixin(Acto
       itemToggle: VitruviumActorSheet.#onItemToggle,
       listAdd: VitruviumActorSheet.#onListAdd,
       listRemove: VitruviumActorSheet.#onListRemove,
-      toggleMode: VitruviumActorSheet.#onToggleMode
+      openStats: VitruviumActorSheet.#onOpenStats
     }
   };
 
@@ -97,9 +98,6 @@ export default class VitruviumActorSheet extends HandlebarsApplicationMixin(Acto
     }
   };
 
-  /** Краткий вид: только просмотр и броски. Подробный: правка. */
-  _compact = false;
-
   /** Какие домены развёрнуты в списке. */
   _expanded = new Set();
 
@@ -110,7 +108,7 @@ export default class VitruviumActorSheet extends HandlebarsApplicationMixin(Acto
     const system = actor.system;
     const cfg = CONFIG.VITRUVIUM;
     const isCharacter = actor.type === "character";
-    const editable = this.isEditable && !this._compact;
+    const editable = this.isEditable;
 
     const characteristics = Object.entries(cfg.characteristics).map(([key, c]) => {
       const value = system.characteristics[key]?.value ?? 0;
@@ -179,7 +177,6 @@ export default class VitruviumActorSheet extends HandlebarsApplicationMixin(Acto
       hint: game.i18n.localize(l.hint),
       active: system.level === key
     }));
-    const currentLevel = levels.find(l => l.active);
 
     return Object.assign(context, {
       actor, system,
@@ -188,11 +185,10 @@ export default class VitruviumActorSheet extends HandlebarsApplicationMixin(Acto
       isCharacter,
       isGM: game.user.isGM,
       editable,
-      compact: this._compact,
       characteristics,
       inspiration,
       inspirationIcon: cfg.inspirationIcon,
-      levels, currentLevel,
+      levels,
       budget,
       domains,
       attributes: await simpleList("attribute"),
@@ -228,7 +224,6 @@ export default class VitruviumActorSheet extends HandlebarsApplicationMixin(Acto
   /** @override */
   _onRender(context, options) {
     super._onRender(context, options);
-    this.element.classList.toggle("compact", this._compact);
     this.element.classList.add(`type-${this.actor.type}`);
   }
 
@@ -330,8 +325,7 @@ export default class VitruviumActorSheet extends HandlebarsApplicationMixin(Acto
     return this.actor.update({ [`system.${list}`]: current });
   }
 
-  static #onToggleMode() {
-    this._compact = !this._compact;
-    this.render();
+  static #onOpenStats() {
+    return StatsWindow.open(this.actor);
   }
 }
