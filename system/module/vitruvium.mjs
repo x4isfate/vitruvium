@@ -10,6 +10,21 @@ import VitruviumItemSheet from "./sheets/item-sheet.mjs";
 import WelcomeWindow, { WelcomeMenu } from "./apps/welcome.mjs";
 import StatsWindow from "./apps/stats.mjs";
 
+/**
+ * В манифесте одно название на оба языка, его видно на экране настройки Foundry.
+ * В мире ставим название на языке клиента: «Витрувий» или «Vitruvium».
+ */
+Hooks.once("i18nInit", () => {
+  const rename = (pkg, key) => {
+    if ( !pkg || !game.i18n.has(key) ) return;
+    const title = game.i18n.localize(key);
+    try { pkg.updateSource({ title }); }
+    catch { try { pkg.title = title; } catch { /* оставить название из манифеста */ } }
+  };
+  rename(game.system, "VITRUVIUM.System.title");
+  rename(game.modules.get("vitruvium-dice"), "VITRUVIUM.DiceModule.title");
+});
+
 Hooks.once("init", () => {
   console.log("Vitruvium | init");
 

@@ -2,39 +2,34 @@
   <header class="v-welcome-head">
     <img class="v-welcome-mark" src="systems/vitruvium/assets/dice/face-1.svg" alt="">
     <div>
-      <p class="v-eyebrow">Система · {{rulesVersion}}</p>
-      <h1>«ВИТРУВИЙ»</h1>
-      <p><em>Универсальная игровая система, инструмент для создания настольных ролевых игр.</em></p>
+      <p class="v-eyebrow">{{localize 'VITRUVIUM.Welcome.eyebrow' version=rulesVersion}}</p>
+      <h1>{{localize 'VITRUVIUM.Welcome.name'}}</h1>
+      <p><em>{{localize 'VITRUVIUM.Welcome.tagline'}}</em></p>
     </div>
   </header>
 
   <section class="v-block">
-    <h2 class="v-eyebrow">Как играть в Foundry</h2>
+    <h2 class="v-eyebrow">{{localize 'VITRUVIUM.Welcome.howTo'}}</h2>
     <ol class="v-steps">
-      <li><b>Персонаж.</b> Во вкладке «Актеры» создайте «Персонажа игрока». Мастер заводит своих героев и противников как «Персонажа мастера».</li>
-      <li><b>Уровень и характеристики.</b> На листе выберите уровень 3, 6, 9 или 12, при наведении видно его описание. Точки под характеристикой ставят её уровень от 1 до 3. Счётчики под шапкой показывают, сколько очков уже распределено.</li>
-      <li><b>Домены, атрибуты, имущество.</b> Добавьте их кнопкой «Добавить» на нужной вкладке или перетащите из каталога предметов. Способности записываются в листе домена.</li>
-      <li><b>Проверка.</b> Нажмите на название характеристики. В окне выберите домен, сложность, преимущества или помехи и потратьте вдохновение, если нужно. Результат придёт в чат. Кнопка «Краткий лист» в шапке открывает сводку персонажа в отдельном окне.</li>
-      <li><b>Мастер.</b> Кнопка с рупором на панели токенов отправляет в чат запрос проверки, игроки бросают прямо из карточки. Провал мастер может отметить как частичный успех.</li>
-      <li><b>Вдохновение.</b> Звёзды на листе, не больше шести. Мастер их выдаёт, проверка их тратит.</li>
-      <li><b>Кубики.</b> Только особые шестигранные: в чате <code>/r 3dv</code> бросает три кубика. Другие кубы система не бросает. Объёмные кубики даёт модуль «Витрувий: кубики» вместе с Dice So Nice.</li>
+      {{#each steps}}<li>{{{this}}}</li>{{/each}}
     </ol>
-    <button type="button" class="v-btn wide" data-action="openRules"><i class="fa-solid fa-book-open"></i> Открыть правила</button>
+    <button type="button" class="v-btn wide" data-action="openRules"><i class="fa-solid fa-book-open"></i> {{localize 'VITRUVIUM.Welcome.openRules'}}</button>
+    {{#if rulesNote}}<p class="v-hint">{{rulesNote}}</p>{{/if}}
   </section>
 
   <section class="v-block">
-    <h2 class="v-eyebrow">Авторы «ВИТРУВИЯ»</h2>
+    <h2 class="v-eyebrow">{{localize 'VITRUVIUM.Welcome.authors'}}</h2>
     <dl class="v-credits">
-      <dt>Версия</dt><dd>Beta 3.1*</dd>
-      <dt>Автор системы</dt><dd>Георгий Воронин</dd>
-      <dt>Руководители проекта</dt><dd>Георгий Воронин, Екатерина Ширманкина</dd>
-      <dt>Веб-разработчик</dt><dd>Лев Некрасов</dd>
-      <dt>UI/UX-дизайнер</dt><dd>Анна Шильгаас</dd>
-      <dt>Разработчики</dt><dd>Арсений Кочедыков, Анастасия Воробьёва</dd>
-      <dt>Графические дизайнеры</dt><dd>Анна Шильгаас, Вероника Слепоглазова, Ольга Ланцетова</dd>
+      <dt>{{localize 'VITRUVIUM.Welcome.creditVersion'}}</dt><dd>Beta 3.1*</dd>
+      <dt>{{localize 'VITRUVIUM.Welcome.creditAuthor'}}</dt><dd>{{localize 'VITRUVIUM.Welcome.nameAuthor'}}</dd>
+      <dt>{{localize 'VITRUVIUM.Welcome.creditLeads'}}</dt><dd>{{localize 'VITRUVIUM.Welcome.nameLeads'}}</dd>
+      <dt>{{localize 'VITRUVIUM.Welcome.creditWeb'}}</dt><dd>{{localize 'VITRUVIUM.Welcome.nameWeb'}}</dd>
+      <dt>{{localize 'VITRUVIUM.Welcome.creditUx'}}</dt><dd>{{localize 'VITRUVIUM.Welcome.nameUx'}}</dd>
+      <dt>{{localize 'VITRUVIUM.Welcome.creditDevs'}}</dt><dd>{{localize 'VITRUVIUM.Welcome.nameDevs'}}</dd>
+      <dt>{{localize 'VITRUVIUM.Welcome.creditDesign'}}</dt><dd>{{localize 'VITRUVIUM.Welcome.nameDesign'}}</dd>
     </dl>
-    <p class="v-hint"><em>*Настоящая версия системы находится на этапе открытого тестирования и разрешена к распространению третьим лицам</em></p>
-    <p class="v-hint">Правила: <a href="https://vitruvium.ru/rules" target="_blank" rel="noopener">vitruvium.ru/rules</a>. Система для Foundry VTT, версия {{version}}: George.</p>
+    <p class="v-hint"><em>{{localize 'VITRUVIUM.Welcome.betaNote'}}</em></p>
+    <p class="v-hint">{{localize 'VITRUVIUM.Welcome.rulesLink'}}: <a href="https://vitruvium.ru/rules" target="_blank" rel="noopener">vitruvium.ru/rules</a>. {{localize 'VITRUVIUM.Welcome.foundryCredit' version=version}}</p>
   </section>
 
   <footer class="v-welcome-foot">

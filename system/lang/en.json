@@ -1,0 +1,223 @@
+{
+  "TYPES": {
+    "Actor": {
+      "character": "Player Character",
+      "npc": "GM Character"
+    },
+    "Item": {
+      "domain": "Domain",
+      "attribute": "Attribute",
+      "property": "Property"
+    }
+  },
+  "VITRUVIUM": {
+    "System": {
+      "title": "Vitruvium"
+    },
+    "Pack": {
+      "rules": "Vitruvium Rules (Russian)"
+    },
+    "DiceModule": {
+      "system": "Vitruvium",
+      "colorset": "Vitruvium: black",
+      "title": "Vitruvium: Dice"
+    },
+    "Char": {
+      "physique": "Physique",
+      "physiqueHint": "Physical strength, immunity and endurance.",
+      "movement": "Movement",
+      "movementHint": "Agility, speed and body control.",
+      "attention": "Attention",
+      "attentionHint": "Senses, reflexes and perception.",
+      "thinking": "Thinking",
+      "thinkingHint": "Memory and intellect, logic and imagination.",
+      "influence": "Influence",
+      "influenceHint": "Effect on others, empathy and charm.",
+      "will": "Will",
+      "willHint": "Strength of spirit, endurance and self-control.",
+      "title": "Characteristics"
+    },
+    "Level": {
+      "title": "Level",
+      "common": "Common",
+      "commonHint": "An ordinary inhabitant of the game world with little individuality. Not much more capable than those around them, with huge potential for growth.",
+      "rare": "Rare",
+      "rareHint": "A special character, well-rounded and standing out from the rest. Average capabilities and good potential for growth during play.",
+      "outstanding": "Outstanding",
+      "outstandingHint": "The character surpasses most inhabitants of the game world, has a large arsenal of capabilities and little potential for growth.",
+      "legendary": "Legendary",
+      "legendaryHint": "The character's power is almost unmatched in the game world. Incredible capabilities are open to them, but there is practically no room left for further growth."
+    },
+    "Budget": {
+      "charPoints": "Characteristic points",
+      "domainCount": "Domains",
+      "domainPoints": "Domain points",
+      "attributes": "Attributes",
+      "property": "Items",
+      "of": "of",
+      "hint": "Character creation counters. Going over is highlighted but not forbidden: characters change as the story goes on."
+    },
+    "Tab": {
+      "description": "Description",
+      "domains": "Domains & Abilities",
+      "attributes": "Attributes",
+      "property": "Property",
+      "states": "Statuses & Aspects",
+      "notes": "Notes"
+    },
+    "Sheet": {
+      "actor": "Vitruvium Sheet",
+      "item": "Vitruvium Sheet",
+      "name": "Character name",
+      "player": "Player",
+      "portrait": "Portrait",
+      "inspiration": "Inspiration",
+      "stats": "Brief sheet",
+      "statsHint": "Open the brief sheet in a separate window",
+      "rollHint": "Click a name to make a check",
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "roll": "Check",
+      "empty": "Nothing here yet.",
+      "dropHint": "Drag an item here from the directory or click “Add”.",
+      "domainLevel": "Domain level",
+      "abilities": "Abilities",
+      "abilitiesSlots": "Abilities {n} of {max}",
+      "abilityName": "Ability name",
+      "abilityDescription": "Description",
+      "rollDomain": "Roll the domain as a standalone ability",
+      "description": "Description",
+      "notes": "Notes"
+    },
+    "Brief": {
+      "title": "Brief sheet",
+      "openSheet": "Full sheet",
+      "points": "points"
+    },
+    "States": {
+      "statuses": "Statuses",
+      "statusesHint": "Short descriptions: “Shoulder wound”, “Empty magazine”.",
+      "statusName": "Status",
+      "levels": "Levels",
+      "levelsHint": "Numeric values: “Crew reputation 11/12”, “Ammo 2/20”.",
+      "levelName": "Name",
+      "levelValue": "Value",
+      "levelMax": "Of",
+      "aspects": "Aspects",
+      "aspectsHint": "Key game indicators. An aspect can have detailed levels and statuses.",
+      "aspectName": "Aspect",
+      "aspectSubject": "Applies to",
+      "aspectValue": "Current level",
+      "aspectScale": "Levels, one per line: “3 Perfect”",
+      "aspectStatuses": "Statuses, comma separated"
+    },
+    "Item": {
+      "new": {
+        "domain": "New domain",
+        "attribute": "New attribute",
+        "property": "New item"
+      }
+    },
+    "Actor": {
+      "character": {},
+      "npc": {}
+    },
+    "Check": {
+      "Title": "Check: {name}",
+      "Characteristic": "Characteristic",
+      "DomainAlone": "No characteristic, domain on its own",
+      "Domain": "Domain",
+      "NoDomain": "No domain",
+      "Difficulty": "Difficulty",
+      "NoDifficulty": "Not set",
+      "Advantages": "Advantages",
+      "Hindrances": "Hindrances",
+      "InspireDie": "Spend 1 inspiration: +1 die to the roll",
+      "InspireSuccesses": "Spend 1 inspiration: successes equal to domain level",
+      "Inspiration": "Inspiration: {n}",
+      "Roll": "Roll",
+      "PreviewDice": "Dice: {n}",
+      "PreviewCapped": "no more than 6 are rolled",
+      "PreviewExtra": "extra rolls: {n}",
+      "PreviewBonus": "+{n} successes",
+      "PreviewSpend": "inspiration spent: {n} of {have}",
+      "NoInspiration": "Not enough inspiration.",
+      "NothingToRoll": "Choose a characteristic or a domain.",
+      "AdvantageN": "Advantage ×{n}: best roll counts",
+      "HindranceN": "Hindrance ×{n}: worst roll counts",
+      "Neutralized": "Advantages and hindrances cancelled each other out",
+      "Successes": "Successes",
+      "Counted": "counted",
+      "Dice": "Dice",
+      "Capped": "of {n}, the rules roll 6",
+      "InspireDieUsed": "+1 die for inspiration",
+      "BonusUsed": "+{n} for inspiration (domain level)",
+      "Success": "Success",
+      "Failure": "Failure",
+      "Partial": "Partial success",
+      "NoOutcome": "No difficulty set, the GM decides the outcome",
+      "PartialMark": "Count as partial success",
+      "PartialUndo": "Revert to failure",
+      "DomainUsed": "Domain “{name}”, level {level}",
+      "DomainAloneUsed": "Domain as a standalone ability, level {level}"
+    },
+    "Request": {
+      "Title": "Request a check",
+      "Speaker": "GM",
+      "Send": "Send to chat",
+      "Any": "Player's choice",
+      "Note": "Note for players",
+      "Card": "Check",
+      "RollButton": "Roll with my character",
+      "NoActor": "Select your character's token or assign a character in your player settings."
+    },
+    "Dice": {
+      "Forbidden": "Vitruvium uses only six-sided dice. The roll with {die} was cancelled."
+    },
+    "Settings": {
+      "welcomeShowOnStart": "Show the welcome window on start",
+      "welcomeShowOnStartHint": "A window with the authors and tips on how to play.",
+      "welcomeMenu": "Vitruvium welcome",
+      "welcomeMenuLabel": "Open",
+      "welcomeMenuHint": "System authors and how to play in Foundry."
+    },
+    "Welcome": {
+      "Title": "Vitruvium",
+      "hide": "Don't show again",
+      "show": "Show on start",
+      "close": "Close",
+      "reopen": "Open again: Game Settings → Vitruvium welcome.",
+      "eyebrow": "System · {version}",
+      "name": "VITRUVIUM",
+      "tagline": "A universal game system, a toolkit for creating tabletop role-playing games.",
+      "howTo": "How to play in Foundry",
+      "step1": "<b>Character.</b> In the Actors tab, create a “Player Character”. The GM creates their heroes and opponents as “GM Character”.",
+      "step2": "<b>Level and characteristics.</b> On the sheet, pick level 3, 6, 9 or 12; hover over it to see its description. The pips under a characteristic set its level from 1 to 3. The counters under the header show how many points are already spent.",
+      "step3": "<b>Domains, attributes, property.</b> Add them with the “Add” button on the matching tab or drag them from the item directory. Abilities are written in the domain sheet.",
+      "step4": "<b>Check.</b> Click a characteristic name. In the window, choose a domain, difficulty, advantages or hindrances, and spend inspiration if needed. The result goes to chat. The “Brief sheet” button in the header opens a character summary in a separate window.",
+      "step5": "<b>GM.</b> The megaphone button on the token controls posts a check request to chat; players roll right from the card. The GM can mark a failure as a partial success.",
+      "step6": "<b>Inspiration.</b> Stars on the sheet, no more than six. The GM grants them, checks spend them.",
+      "step7": "<b>Dice.</b> Only the special six-sided dice: <code>/r 3dv</code> in chat rolls three. The system rejects other dice. 3D dice come from the “Vitruvium: Dice” module together with Dice So Nice.",
+      "openRules": "Open the rules",
+      "rulesNote": "The official Vitruvium rules are published in Russian; the compendium keeps the original text.",
+      "authors": "Vitruvium authors",
+      "creditVersion": "Version",
+      "creditAuthor": "System author",
+      "creditLeads": "Project leads",
+      "creditWeb": "Web developer",
+      "creditUx": "UI/UX designer",
+      "creditDevs": "Developers",
+      "creditDesign": "Graphic designers",
+      "nameAuthor": "Georgy Voronin",
+      "nameLeads": "Georgy Voronin, Ekaterina Shirmankina",
+      "nameWeb": "Lev Nekrasov",
+      "nameUx": "Anna Shilgaas",
+      "nameDevs": "Arseny Kochedykov, Anastasia Vorobyova",
+      "nameDesign": "Anna Shilgaas, Veronika Slepoglazova, Olga Lantsetova",
+      "betaNote": "*This version of the system is in open testing and may be distributed to third parties.",
+      "rulesLink": "Rules",
+      "foundryCredit": "Foundry VTT system, version {version}: George."
+    }
+  }
+}
