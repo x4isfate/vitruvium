@@ -11,6 +11,10 @@
   "authors": [
     { "name": "George", "discord": "", "flags": {} }
   ],
+  "media": [
+    { "type": "setup", "url": "systems/vitruvium/assets/cover.png", "thumbnail": "systems/vitruvium/assets/cover.png", "loop": false, "flags": {} },
+    { "type": "icon", "url": "systems/vitruvium/assets/logo.svg", "loop": false, "flags": {} }
+  ],
   "esmodules": ["module/vitruvium.mjs"],
   "styles": ["styles/vitruvium.css"],
   "languages": [
