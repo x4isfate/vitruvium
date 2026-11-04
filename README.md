@@ -45,7 +45,7 @@ npm run dice-art    # перерисовать грани кубика (нуже
 npm run dist        # архивы в dist/
 ```
 
-Релиз: поднять `version` в `system/system.json` и `modules/vitruvium-dice/module.json`, дописать `CHANGELOG.md`, поставить тег `vX.Y.Z`. GitHub Actions соберёт архивы и опубликует релиз.
+Релиз: поднять `version` в `system/system.json` и `modules/vitruvium-dice/module.json`, дописать `CHANGELOG.md` и опубликовать релиз с тегом `vX.Y.Z` (на GitHub через «Draft a new release» или пушем тега). GitHub Actions соберёт архивы и приложит их к релизу. Можно запустить и вручную: Actions → Release → Run workflow.
 
 Для разработки удобно сделать ссылки из папки данных Foundry на `system/` и `modules/vitruvium-dice/`.
 

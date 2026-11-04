@@ -3,6 +3,17 @@ name: Release
 on:
   push:
     tags: ["v*"]
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Тег релиза, например v0.1.0"
+        required: true
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -11,7 +22,12 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - name: Тег
+        id: tag
+        run: echo "name=${{ github.event.inputs.tag || github.event.release.tag_name || github.ref_name }}" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.tag.outputs.name }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -20,8 +36,10 @@ jobs:
       - run: npm run lint
       - run: npm test
       - name: Проверка версии
+        env:
+          TAG_NAME: ${{ steps.tag.outputs.name }}
         run: |
-          TAG="${GITHUB_REF_NAME#v}"
+          TAG="${TAG_NAME#v}"
           SYS=$(node -p "require('./system/system.json').version")
           MOD=$(node -p "require('./modules/vitruvium-dice/module.json').version")
           test "$TAG" = "$SYS" || { echo "system.json: $SYS, тег: $TAG"; exit 1; }
@@ -30,6 +48,11 @@ jobs:
       - name: Релиз
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG_NAME: ${{ steps.tag.outputs.name }}
         run: |
-          gh release create "$GITHUB_REF_NAME" dist/vitruvium.zip dist/system.json dist/vitruvium-dice.zip dist/module.json \
-            --title "$GITHUB_REF_NAME" --notes-file CHANGELOG.md
+          FILES="dist/vitruvium.zip dist/system.json dist/vitruvium-dice.zip dist/module.json"
+          if gh release view "$TAG_NAME" >/dev/null 2>&1; then
+            gh release upload "$TAG_NAME" $FILES --clobber
+          else
+            gh release create "$TAG_NAME" $FILES --title "$TAG_NAME" --notes-file CHANGELOG.md
+          fi
