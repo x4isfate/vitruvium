@@ -45,15 +45,28 @@ const ctx = {
 };
 const parts = ["header","tabs","tab-description","tab-domains","tab-attributes","tab-property","tab-states","tab-notes"];
 const html = parts.map(p => tpl(`templates/actor/${p}.hbs`)({ ...ctx, tab: tabs.find(t => `tab-${t.id}` === p) })).join("\n");
-const stats = tpl("templates/apps/stats.hbs")({ ...ctx, canRoll: true, canEditInspiration: true });
+const P = (i, r) => { const a = (-90 + i * 60) * Math.PI / 180; return [130 + r * Math.cos(a), 130 + r * Math.sin(a)]; };
+const poly = rs => rs.map((r, i) => P(i, r).map(n => n.toFixed(1)).join(",")).join(" ");
+const order = ["physique","movement","attention","thinking","influence","will"];
+const byKey = Object.fromEntries(chars.map(c => [c.key, c]));
+const vr = order.map(k => 90 * byKey[k].value / 3);
+const radar = { size: 260, center: 130, points: 4,
+  rings: [1,2,3].map(n => poly(Array(6).fill(30 * n))),
+  spokes: order.map((_, i) => { const [x, y] = P(i, 90); return { x, y }; }),
+  shape: poly(vr), dots: vr.map((r, i) => { const [x, y] = P(i, r); return { x, y }; }),
+  axes: order.map((k, i) => { const [x, y] = P(i, 122); return { ...byKey[k], left: x / 2.6, top: y / 2.6 }; }) };
+const stats = tpl("templates/apps/stats.hbs")({ ...ctx, radar, level: { label: "Редкий" }, canRoll: true, canEditInspiration: true,
+  attributes: ctx.attributes, domains: [{ name: "Торговля", level: 3, abilities: "Антиквар" }, { name: "Скрытность", level: 1 }],
+  property: [{ name: "Револьвер" }], statuses: ctx.statuses, levels: ctx.levelsList,
+  aspects: [{ name: "Дисциплина", subject: "Корабль «Эльскаринна»", value: 1, current: "Нормально" }] });
 const css = readFileSync(sys("styles/vitruvium.css"), "utf8").replaceAll("../assets/", `file://${root}/system/assets/`);
 const page = `<html><head><meta charset="utf-8"><style>${css} body{margin:0;background:#000} .window-content{display:flex;flex-direction:column;gap:12px;height:900px}</style></head>
 <body><div class="vitruvium vitruvium-sheet actor application" style="width:820px;margin:10px"><div class="window-content">${fix(html)}</div></div>
-<div class="vitruvium vitruvium-stats application" style="width:230px;position:absolute;left:850px;top:10px"><div class="window-content">${fix(stats)}</div></div></body></html>`;
+<div class="vitruvium vitruvium-stats application" style="width:780px;position:absolute;left:850px;top:10px"><div class="window-content">${fix(stats)}</div></div></body></html>`;
 
 const { chromium } = createRequire(import.meta.url)("playwright");
 const browser = await chromium.launch();
-const pg = await browser.newPage({ viewport: { width: 1100, height: 940 } });
+const pg = await browser.newPage({ viewport: { width: 1650, height: 940 } });
 await pg.route("http://127.0.0.1:8123/preview.html", r => r.fulfill({ contentType: "text/html", body: page }));
 await pg.goto("http://127.0.0.1:8123/preview.html");
 await pg.waitForTimeout(300);

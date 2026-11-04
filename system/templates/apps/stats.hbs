@@ -1,21 +1,97 @@
-<div class="v-stats">
-  <ul class="v-stats-list">
-    {{#each characteristics}}
-    <li>
-      <button type="button" class="v-stats-row" data-action="roll" data-characteristic="{{key}}" data-tooltip="{{hint}}" data-tooltip-direction="LEFT" {{#unless ../canRoll}}disabled{{/unless}}>
-        <span class="v-icon" style="-webkit-mask-image:url('{{icon}}');mask-image:url('{{icon}}')"></span>
-        <span class="v-stats-label">{{label}}</span>
-        <span class="v-stats-value">{{value}}</span>
-      </button>
-    </li>
-    {{/each}}
-  </ul>
-  <div class="v-stats-insp">
-    <span class="v-eyebrow">{{localize 'VITRUVIUM.Sheet.inspiration'}} {{inspiration.value}}/{{inspiration.max}}</span>
-    <span class="v-stars">
-      {{#each inspiration.pips}}
-      <button type="button" class="v-star {{#if on}}on{{/if}}" data-action="setInspiration" data-value="{{n}}" aria-pressed="{{on}}" aria-label="{{n}}" {{#unless ../canEditInspiration}}disabled{{/unless}}><span class="v-star-icon" style="-webkit-mask-image:url('{{../inspirationIcon}}');mask-image:url('{{../inspirationIcon}}')"></span></button>
-      {{/each}}
-    </span>
+<div class="v-brief">
+  <aside class="v-brief-side">
+    <div class="v-brief-portrait"><img src="{{actor.img}}" alt="{{actor.name}}"></div>
+    <div class="v-brief-insp">
+      <span class="v-eyebrow">{{localize 'VITRUVIUM.Sheet.inspiration'}}</span>
+      <span class="v-brief-insp-value">{{inspiration.value}}/{{inspiration.max}}</span>
+      <span class="v-stars">
+        {{#each inspiration.pips}}
+        <button type="button" class="v-star {{#if on}}on{{/if}}" data-action="setInspiration" data-value="{{n}}" aria-pressed="{{on}}" aria-label="{{n}}" {{#unless ../canEditInspiration}}disabled{{/unless}}><span class="v-star-icon" style="-webkit-mask-image:url('{{../inspirationIcon}}');mask-image:url('{{../inspirationIcon}}')"></span></button>
+        {{/each}}
+      </span>
+    </div>
+  </aside>
+
+  <div class="v-brief-main">
+    <header class="v-brief-head">
+      <div>
+        <p class="v-eyebrow v-brief-kicker">{{localize 'VITRUVIUM.Brief.title'}}{{#if level}} · {{level.label}}{{/if}}</p>
+        <h1 class="v-brief-name">{{actor.name}}</h1>
+      </div>
+      <button type="button" class="v-btn" data-action="openSheet"><i class="fa-solid fa-pen"></i> {{localize 'VITRUVIUM.Brief.openSheet'}}</button>
+    </header>
+
+    <div class="v-brief-chars">
+      <div class="v-radar">
+        <svg viewBox="0 0 {{radar.size}} {{radar.size}}" aria-hidden="true">
+          {{#each radar.rings}}<polygon class="v-radar-ring" points="{{this}}"/>{{/each}}
+          {{#each radar.spokes}}<line class="v-radar-ring" x1="{{../radar.center}}" y1="{{../radar.center}}" x2="{{x}}" y2="{{y}}"/>{{/each}}
+          <polygon class="v-radar-shape" points="{{radar.shape}}"/>
+          {{#each radar.dots}}<circle class="v-radar-dot" cx="{{x}}" cy="{{y}}" r="4"/>{{/each}}
+        </svg>
+        <div class="v-radar-center"><b>{{radar.points}}</b><span>{{localize 'VITRUVIUM.Brief.points'}}</span></div>
+        {{#each radar.axes}}
+        <span class="v-radar-axis" style="left:{{left}}%;top:{{top}}%" data-tooltip="{{label}}">
+          <span class="v-icon" style="-webkit-mask-image:url('{{icon}}');mask-image:url('{{icon}}')"></span><b>{{value}}</b>
+        </span>
+        {{/each}}
+      </div>
+
+      <div class="v-brief-cards">
+        {{#each characteristics}}
+        <button type="button" class="v-brief-card" data-action="roll" data-characteristic="{{key}}" data-tooltip="{{hint}}" {{#unless ../canRoll}}disabled{{/unless}}>
+          <span class="v-brief-card-value">{{value}}</span>
+          <span class="v-brief-card-label">{{label}}</span>
+          <span class="v-pips">{{#each pips}}<span class="v-pip {{#if on}}on{{/if}}"></span>{{/each}}</span>
+        </button>
+        {{/each}}
+      </div>
+    </div>
+
+    <section class="v-brief-block">
+      <h3 class="v-eyebrow">{{localize 'VITRUVIUM.Tab.attributes'}}</h3>
+      {{#if attributes.length}}
+      <p class="v-tags">{{#each attributes}}<span class="v-tag">{{name}}</span>{{/each}}</p>
+      {{else}}<p class="v-empty">{{localize 'VITRUVIUM.Sheet.empty'}}</p>{{/if}}
+    </section>
+
+    <section class="v-brief-block">
+      <h3 class="v-eyebrow">{{localize 'VITRUVIUM.Tab.domains'}}</h3>
+      {{#if domains.length}}
+      <p class="v-tags">{{#each domains}}<span class="v-tag" {{#if abilities}}data-tooltip="{{abilities}}"{{/if}}>{{name}} <b>{{level}}</b></span>{{/each}}</p>
+      {{else}}<p class="v-empty">{{localize 'VITRUVIUM.Sheet.empty'}}</p>{{/if}}
+    </section>
+
+    <section class="v-brief-block">
+      <h3 class="v-eyebrow">{{localize 'VITRUVIUM.Tab.property'}}</h3>
+      {{#if property.length}}
+      <p class="v-tags">{{#each property}}<span class="v-tag" {{#if statuses}}data-tooltip="{{statuses}}"{{/if}}>{{name}}</span>{{/each}}</p>
+      {{else}}<p class="v-empty">{{localize 'VITRUVIUM.Sheet.empty'}}</p>{{/if}}
+    </section>
+
+    <section class="v-brief-block">
+      <h3 class="v-eyebrow">{{localize 'VITRUVIUM.States.statuses'}}</h3>
+      {{#if statuses.length}}
+      <p class="v-tags">{{#each statuses}}<span class="v-tag">{{name}}</span>{{/each}}</p>
+      {{else}}<p class="v-empty">{{localize 'VITRUVIUM.Sheet.empty'}}</p>{{/if}}
+    </section>
+
+    {{#if levels.length}}
+    <section class="v-brief-block">
+      <h3 class="v-eyebrow">{{localize 'VITRUVIUM.States.levels'}}</h3>
+      <p class="v-tags">{{#each levels}}<span class="v-tag">{{name}} <b>{{value}}{{#if max}}/{{max}}{{/if}}</b></span>{{/each}}</p>
+    </section>
+    {{/if}}
+
+    <section class="v-brief-block">
+      <h3 class="v-eyebrow">{{localize 'VITRUVIUM.States.aspects'}}</h3>
+      {{#if aspects.length}}
+      <ul class="v-brief-aspects">
+        {{#each aspects}}
+        <li><b>{{name}}</b>{{#if subject}} <em>{{subject}}</em>{{/if}} <span class="v-brief-aspect-value">{{value}}{{#if current}} · {{current}}{{/if}}</span></li>
+        {{/each}}
+      </ul>
+      {{else}}<p class="v-empty">{{localize 'VITRUVIUM.Sheet.empty'}}</p>{{/if}}
+    </section>
   </div>
 </div>

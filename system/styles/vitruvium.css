@@ -171,6 +171,8 @@
   background: transparent; border: none; border-radius: 6px;
   color: var(--v-muted); font-weight: 600; cursor: pointer;
 }
+.vitruvium .v-seg button:hover,
+.vitruvium .v-seg button:focus { border: none; box-shadow: none; outline: none; }
 .vitruvium .v-seg button.active { background: var(--v-accent-soft); color: var(--v-ink); }
 .vitruvium .v-seg button:disabled { cursor: default; }
 
@@ -465,29 +467,77 @@
 .journal-entry-page ul.v-scale li > b { min-width: 2em; text-align: right; font-variant-numeric: tabular-nums; }
 
 /* ------------------------------------------------------------------ */
-/*  Окно характеристик                                                  */
+/*  Краткий лист                                                        */
 /* ------------------------------------------------------------------ */
 
-.vitruvium-stats .window-content { padding: 10px; }
-.vitruvium-stats .v-stats { display: flex; flex-direction: column; gap: 12px; }
-.vitruvium-stats .v-stats-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-.vitruvium-stats .v-stats-row,
-.vitruvium-stats .v-stats-row:hover,
-.vitruvium-stats .v-stats-row:focus {
-  display: flex; align-items: center; gap: 10px;
-  width: 100%; height: auto; min-height: 0; padding: 8px 10px;
-  background: var(--v-panel); border: 1px solid var(--v-line); border-radius: var(--v-radius-s);
+.vitruvium-stats .window-content { padding: 16px; }
+.vitruvium-stats .v-brief { display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: start; }
+.vitruvium-stats .v-brief-side { display: flex; flex-direction: column; gap: 14px; }
+.vitruvium-stats .v-brief-portrait {
+  aspect-ratio: 3 / 4; overflow: hidden;
+  border: 1px solid var(--v-line-2); border-radius: var(--v-radius);
+  background: var(--v-panel);
+}
+.vitruvium-stats .v-brief-portrait img { width: 100%; height: 100%; object-fit: cover; border: none; }
+.vitruvium-stats .v-brief-insp { display: flex; flex-direction: column; gap: 6px; }
+.vitruvium-stats .v-brief-insp-value { font-size: 24px; font-weight: 600; line-height: 1; }
+.vitruvium-stats .v-stars { flex-wrap: wrap; }
+
+.vitruvium-stats .v-brief-main { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.vitruvium-stats .v-brief-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.vitruvium-stats .v-brief-kicker { margin: 0 0 4px; color: var(--v-accent); }
+.vitruvium-stats .v-brief-name { margin: 0; border: none; font-size: 28px; font-weight: 600; line-height: 1.1; color: var(--v-ink); }
+.vitruvium-stats .v-brief-head .v-btn { flex: none; width: auto; }
+
+.vitruvium-stats .v-brief-chars { display: grid; grid-template-columns: 230px 1fr; gap: 16px; align-items: center; }
+.vitruvium-stats .v-radar { position: relative; width: 230px; aspect-ratio: 1; }
+.vitruvium-stats .v-radar svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.vitruvium-stats .v-radar-ring { fill: none; stroke: var(--v-line-2); stroke-width: 1; }
+.vitruvium-stats .v-radar-shape { fill: var(--v-accent-soft); stroke: var(--v-accent); stroke-width: 1.5; }
+.vitruvium-stats .v-radar-dot { fill: var(--v-accent); }
+.vitruvium-stats .v-radar-center {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; line-height: 1; pointer-events: none;
+}
+.vitruvium-stats .v-radar-center b { font-size: 20px; font-weight: 600; }
+.vitruvium-stats .v-radar-center span { font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--v-ink-2); }
+.vitruvium-stats .v-radar-axis {
+  position: absolute; transform: translate(-50%, -50%);
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px 2px 5px;
+  background: var(--v-panel-3); border: 1px solid var(--v-line-2); border-radius: 999px;
+  font-size: 12px;
+}
+.vitruvium-stats .v-radar-axis .v-icon { width: 16px; height: 16px; background: var(--v-accent); }
+
+.vitruvium-stats .v-brief-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.vitruvium-stats .v-brief-card,
+.vitruvium-stats .v-brief-card:hover,
+.vitruvium-stats .v-brief-card:focus {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  width: auto; height: auto; min-height: 0; padding: 12px 6px 10px;
+  background: var(--v-panel); border: 1px solid var(--v-line-2); border-radius: var(--v-radius);
   box-shadow: none; outline: none; color: var(--v-ink); cursor: pointer;
 }
-.vitruvium-stats .v-stats-row:hover { border-color: var(--v-line-2); }
-.vitruvium-stats .v-stats-row:hover .v-icon { background: var(--v-accent); }
-.vitruvium-stats .v-stats-row:hover .v-stats-label { color: var(--v-accent); }
-.vitruvium-stats .v-stats-row:disabled { cursor: default; }
-.vitruvium-stats .v-icon { width: 22px; height: 20px; flex: none; }
-.vitruvium-stats .v-stats-label {
-  flex: 1; text-align: left;
-  font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: var(--v-ink-2);
+.vitruvium-stats .v-brief-card:hover { border-color: var(--v-accent); }
+.vitruvium-stats .v-brief-card:hover .v-brief-card-label { color: var(--v-accent); }
+.vitruvium-stats .v-brief-card:disabled { cursor: default; }
+.vitruvium-stats .v-brief-card-value { font-size: 30px; font-weight: 600; line-height: 1; }
+.vitruvium-stats .v-brief-card-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: var(--v-ink-2);
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-.vitruvium-stats .v-stats-value { font-size: 22px; font-weight: 600; line-height: 1; }
-.vitruvium-stats .v-stats-insp { display: flex; flex-direction: column; gap: 6px; }
-.vitruvium-stats .v-stars { flex-wrap: wrap; }
+.vitruvium-stats .v-brief-card .v-pip { display: block; cursor: default; }
+
+.vitruvium-stats .v-brief-block { display: flex; flex-direction: column; gap: 6px; }
+.vitruvium-stats .v-brief-block h3 { margin: 0; border: none; }
+.vitruvium-stats .v-brief-block .v-tags { margin: 0; }
+.vitruvium-stats .v-brief-block .v-empty {
+  margin: 0; padding: 8px 12px;
+  border: 1px dashed var(--v-line-2); border-radius: var(--v-radius-s);
+  color: var(--v-muted); font-size: 13px;
+}
+.vitruvium-stats .v-tag b { color: var(--v-ink); margin-left: 4px; }
+.vitruvium-stats .v-brief-aspects { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
+.vitruvium-stats .v-brief-aspects em { color: var(--v-muted); }
+.vitruvium-stats .v-brief-aspect-value { color: var(--v-accent); margin-left: 6px; }
