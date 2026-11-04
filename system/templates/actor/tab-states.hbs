@@ -1,0 +1,37 @@
+<section class="tab v-pane {{tab.cssClass}}" data-group="primary" data-tab="states">
+  {{> "systems/vitruvium/templates/actor/parts/statuses-levels.hbs" statuses=statuses levels=levelsList editable=editable}}
+
+  <div class="v-block">
+    <div class="v-pane-head">
+      <h3 class="v-eyebrow">{{localize 'VITRUVIUM.States.aspects'}}</h3>
+      {{#if editable}}<button type="button" class="v-btn" data-action="listAdd" data-list="aspects"><i class="fa-solid fa-plus"></i></button>{{/if}}
+    </div>
+    <p class="v-hint">{{localize 'VITRUVIUM.States.aspectsHint'}}</p>
+    <div class="v-aspects">
+      {{#each aspects}}
+      <div class="v-aspect">
+        {{#if ../editable}}
+        <div class="v-aspect-head">
+          <input class="v-aspect-name" type="text" name="system.aspects.{{@index}}.name" value="{{name}}" placeholder="{{localize 'VITRUVIUM.States.aspectName'}}">
+          <button type="button" class="v-icon-btn" data-action="listRemove" data-list="aspects" data-index="{{@index}}"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <input type="text" name="system.aspects.{{@index}}.subject" value="{{subject}}" placeholder="{{localize 'VITRUVIUM.States.aspectSubject'}}">
+        <label class="v-inline">{{localize 'VITRUVIUM.States.aspectValue'}}
+          <input type="number" step="1" name="system.aspects.{{@index}}.value" value="{{value}}">
+          {{#if current}}<b>{{current}}</b>{{/if}}
+        </label>
+        <textarea name="system.aspects.{{@index}}.scaleText" rows="4" placeholder="{{localize 'VITRUVIUM.States.aspectScale'}}">{{scaleText}}</textarea>
+        <input type="text" name="system.aspects.{{@index}}.statusesText" value="{{statusesText}}" placeholder="{{localize 'VITRUVIUM.States.aspectStatuses'}}">
+        {{else}}
+        <p class="v-aspect-name"><b>{{name}}</b>{{#if subject}} <em>{{subject}}</em>{{/if}}</p>
+        <p class="v-aspect-value"><b>{{value}}</b> {{current}}</p>
+        {{#if scale.length}}<ul class="v-scale">{{#each scale}}<li class="{{#if (vitruviumEq value ../value)}}on{{/if}}"><b>{{value}}</b> {{label}}</li>{{/each}}</ul>{{/if}}
+        {{#if statuses.length}}<p class="v-tags">{{#each statuses}}<span class="v-tag">{{this}}</span>{{/each}}</p>{{/if}}
+        {{/if}}
+      </div>
+      {{else}}
+      <p class="v-empty">{{localize 'VITRUVIUM.Sheet.empty'}}</p>
+      {{/each}}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,48 @@
+<div class="vitruvium-card">
+  <header class="vc-head">
+    <span class="vc-eyebrow">{{localize 'VITRUVIUM.Sheet.roll'}}</span>
+    <h3>{{title}}</h3>
+    {{#if domain}}
+      {{#if domain.alone}}
+      <p class="vc-sub">{{localize 'VITRUVIUM.Check.DomainAloneUsed' level=domain.level}}</p>
+      {{else}}
+      <p class="vc-sub">{{localize 'VITRUVIUM.Check.DomainUsed' name=domain.name level=domain.level}}</p>
+      {{/if}}
+    {{/if}}
+  </header>
+
+  <ul class="vc-facts">
+    <li>{{localize 'VITRUVIUM.Check.Dice'}}: <b>{{dice}}</b>{{#if capped}} <span class="vc-dim">({{localize 'VITRUVIUM.Check.Capped' n=rawDice}})</span>{{/if}}</li>
+    {{#if inspireDie}}<li>{{localize 'VITRUVIUM.Check.InspireDieUsed'}}</li>{{/if}}
+    <li>{{localize 'VITRUVIUM.Check.Difficulty'}}: <b>{{#if difficulty}}{{difficulty}}{{else}}—{{/if}}</b></li>
+    {{#if netLabel}}<li>{{netLabel}}</li>{{/if}}
+    {{#if neutralized}}{{#unless netLabel}}<li>{{localize 'VITRUVIUM.Check.Neutralized'}}</li>{{/unless}}{{/if}}
+  </ul>
+
+  <div class="vc-rolls">
+    {{#each rolls}}
+    <div class="vc-roll {{#if counted}}counted{{else}}dropped{{/if}}">
+      <span class="vc-faces">{{#each faces}}<img class="vitruvium-face s{{n}}" src="{{icon}}" alt="{{n}}">{{/each}}</span>
+      <span class="vc-roll-sum">{{successes}}</span>
+      {{#if ../netLabel}}{{#if counted}}<span class="vc-tag">{{localize 'VITRUVIUM.Check.Counted'}}</span>{{/if}}{{/if}}
+    </div>
+    {{/each}}
+  </div>
+
+  {{#if bonus}}<p class="vc-bonus">{{localize 'VITRUVIUM.Check.BonusUsed' n=bonus}}</p>{{/if}}
+
+  <footer class="vc-total">
+    <span class="vc-eyebrow">{{localize 'VITRUVIUM.Check.Successes'}}</span>
+    <b class="vc-big">{{successes}}{{#if difficulty}}<span class="vc-dim"> / {{difficulty}}</span>{{/if}}</b>
+    {{#if outcome}}
+      {{#if (vitruviumEq outcome "success")}}
+      <span class="vitruvium-outcome" data-outcome="success">{{localize 'VITRUVIUM.Check.Success'}}</span>
+      {{else}}
+      <span class="vitruvium-outcome" data-outcome="failure">{{localize 'VITRUVIUM.Check.Failure'}}</span>
+      {{/if}}
+    {{else}}
+      <span class="vitruvium-outcome" data-outcome="none">{{localize 'VITRUVIUM.Check.NoOutcome'}}</span>
+    {{/if}}
+  </footer>
+  <div class="vitruvium-gm-tools"></div>
+</div>

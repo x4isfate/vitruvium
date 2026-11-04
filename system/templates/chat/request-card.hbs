@@ -1,0 +1,13 @@
+<div class="vitruvium-card request">
+  <header class="vc-head">
+    <span class="vc-eyebrow">{{localize 'VITRUVIUM.Request.Card'}}</span>
+    <h3>{{#if characteristicLabel}}{{characteristicLabel}}{{else}}{{localize 'VITRUVIUM.Request.Any'}}{{/if}}</h3>
+    {{#if note}}<p class="vc-sub">{{note}}</p>{{/if}}
+  </header>
+  <ul class="vc-facts">
+    <li>{{localize 'VITRUVIUM.Check.Difficulty'}}: <b>{{#if difficulty}}{{difficulty}}{{else}}—{{/if}}</b></li>
+    {{#if advantages}}<li>{{localize 'VITRUVIUM.Check.Advantages'}}: <b>{{advantages}}</b></li>{{/if}}
+    {{#if hindrances}}<li>{{localize 'VITRUVIUM.Check.Hindrances'}}: <b>{{hindrances}}</b></li>{{/if}}
+  </ul>
+  <button type="button" class="vc-button" data-vitruvium-request><i class="fa-solid fa-dice-six"></i> {{localize 'VITRUVIUM.Request.RollButton'}}</button>
+</div>
