@@ -151,7 +151,9 @@
 }
 .vitruvium-sheet input.v-name:hover { border-color: var(--v-line-2); }
 .vitruvium-sheet .v-mode {
-  flex: none; width: auto;
+  flex: none; width: auto; height: auto; min-height: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--v-ink-2);
   padding: 2px 12px; font-size: 12px; line-height: 22px;
   background: var(--v-panel-3); border: 1px solid var(--v-line-2); border-radius: 999px;
   cursor: pointer;
@@ -159,8 +161,6 @@
 .vitruvium-sheet .v-meta-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
 .vitruvium-sheet .v-player { flex: 1; min-width: 160px; }
 .vitruvium-sheet .v-field { display: flex; gap: 10px; align-items: center; }
-.vitruvium-sheet .v-level-hint { margin: 0; font-size: 12px; color: var(--v-muted); line-height: 1.45; }
-.vitruvium-sheet .v-level-hint b { color: var(--v-ink); }
 
 .vitruvium .v-seg {
   display: inline-flex; padding: 3px; gap: 2px;
@@ -226,27 +226,27 @@
 .vitruvium .v-pip:disabled { cursor: default; }
 
 .vitruvium-sheet .v-inspiration { display: flex; align-items: center; gap: 12px; }
-.vitruvium-sheet .v-stars { display: inline-flex; gap: 4px; }
-.vitruvium-sheet .v-star,
-.vitruvium-sheet .v-star:hover,
-.vitruvium-sheet .v-star:focus {
+.vitruvium .v-stars { display: inline-flex; gap: 4px; }
+.vitruvium .v-star,
+.vitruvium .v-star:hover,
+.vitruvium .v-star:focus {
   flex: 0 0 26px; width: 26px; height: 26px; min-height: 0; padding: 0;
   display: grid; place-items: center;
   border: 1px solid var(--v-line-2); border-radius: 50%;
   background: var(--v-panel-2); box-shadow: none; outline: none;
   cursor: pointer;
 }
-.vitruvium-sheet .v-star-icon {
+.vitruvium .v-star-icon {
   display: block; width: 16px; height: 16px;
   background: var(--v-dim);
   -webkit-mask-position: center; mask-position: center;
   -webkit-mask-size: contain; mask-size: contain;
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
 }
-.vitruvium-sheet .v-star:hover .v-star-icon { background: var(--v-ink-2); }
-.vitruvium-sheet .v-star.on { border-color: var(--v-accent); }
-.vitruvium-sheet .v-star.on .v-star-icon { background: var(--v-accent); }
-.vitruvium-sheet .v-star:disabled { cursor: default; }
+.vitruvium .v-star:hover .v-star-icon { background: var(--v-ink-2); }
+.vitruvium .v-star.on { border-color: var(--v-accent); }
+.vitruvium .v-star.on .v-star-icon { background: var(--v-accent); }
+.vitruvium .v-star:disabled { cursor: default; }
 
 /* Счётчики создания */
 .vitruvium-sheet .v-budget { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -354,9 +354,7 @@
 .vitruvium .v-scale li.on { color: var(--v-ink); }
 .vitruvium .v-scale li.on b { color: var(--v-accent); }
 
-/* Краткий вид и персонаж мастера */
-.vitruvium-sheet.compact .v-portrait { width: 88px; height: 110px; }
-.vitruvium-sheet.compact .v-name { font-size: 22px; }
+/* Персонаж мастера */
 .vitruvium-sheet.type-npc .v-portrait { width: 96px; height: 120px; }
 
 /* ------------------------------------------------------------------ */
@@ -465,3 +463,31 @@
 .journal-entry-page ul.v-scale { list-style: none; padding-left: 0; }
 .journal-entry-page ul.v-scale li { display: flex; gap: 0.75em; }
 .journal-entry-page ul.v-scale li > b { min-width: 2em; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ------------------------------------------------------------------ */
+/*  Окно характеристик                                                  */
+/* ------------------------------------------------------------------ */
+
+.vitruvium-stats .window-content { padding: 10px; }
+.vitruvium-stats .v-stats { display: flex; flex-direction: column; gap: 12px; }
+.vitruvium-stats .v-stats-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.vitruvium-stats .v-stats-row,
+.vitruvium-stats .v-stats-row:hover,
+.vitruvium-stats .v-stats-row:focus {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; height: auto; min-height: 0; padding: 8px 10px;
+  background: var(--v-panel); border: 1px solid var(--v-line); border-radius: var(--v-radius-s);
+  box-shadow: none; outline: none; color: var(--v-ink); cursor: pointer;
+}
+.vitruvium-stats .v-stats-row:hover { border-color: var(--v-line-2); }
+.vitruvium-stats .v-stats-row:hover .v-icon { background: var(--v-accent); }
+.vitruvium-stats .v-stats-row:hover .v-stats-label { color: var(--v-accent); }
+.vitruvium-stats .v-stats-row:disabled { cursor: default; }
+.vitruvium-stats .v-icon { width: 22px; height: 20px; flex: none; }
+.vitruvium-stats .v-stats-label {
+  flex: 1; text-align: left;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: var(--v-ink-2);
+}
+.vitruvium-stats .v-stats-value { font-size: 22px; font-weight: 600; line-height: 1; }
+.vitruvium-stats .v-stats-insp { display: flex; flex-direction: column; gap: 6px; }
+.vitruvium-stats .v-stars { flex-wrap: wrap; }

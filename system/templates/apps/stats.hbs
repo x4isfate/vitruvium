@@ -1,0 +1,21 @@
+<div class="v-stats">
+  <ul class="v-stats-list">
+    {{#each characteristics}}
+    <li>
+      <button type="button" class="v-stats-row" data-action="roll" data-characteristic="{{key}}" data-tooltip="{{hint}}" data-tooltip-direction="LEFT" {{#unless ../canRoll}}disabled{{/unless}}>
+        <span class="v-icon" style="-webkit-mask-image:url('{{icon}}');mask-image:url('{{icon}}')"></span>
+        <span class="v-stats-label">{{label}}</span>
+        <span class="v-stats-value">{{value}}</span>
+      </button>
+    </li>
+    {{/each}}
+  </ul>
+  <div class="v-stats-insp">
+    <span class="v-eyebrow">{{localize 'VITRUVIUM.Sheet.inspiration'}} {{inspiration.value}}/{{inspiration.max}}</span>
+    <span class="v-stars">
+      {{#each inspiration.pips}}
+      <button type="button" class="v-star {{#if on}}on{{/if}}" data-action="setInspiration" data-value="{{n}}" aria-pressed="{{on}}" aria-label="{{n}}" {{#unless ../canEditInspiration}}disabled{{/unless}}><span class="v-star-icon" style="-webkit-mask-image:url('{{../inspirationIcon}}');mask-image:url('{{../inspirationIcon}}')"></span></button>
+      {{/each}}
+    </span>
+  </div>
+</div>
