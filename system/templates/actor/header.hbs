@@ -45,7 +45,7 @@
     {{#each characteristics}}
     <div class="v-char" data-characteristic="{{key}}">
       <button type="button" class="v-char-roll" data-action="roll" data-tooltip="{{hint}}">
-        <span class="v-icon" style="--icon:url('{{icon}}')"></span>
+        <span class="v-icon" style="-webkit-mask-image:url('{{icon}}');mask-image:url('{{icon}}')"></span>
         <span class="v-char-label">{{label}}</span>
       </button>
       <span class="v-char-value">{{value}}</span>
@@ -60,7 +60,7 @@
     <span class="v-eyebrow">{{localize 'VITRUVIUM.Sheet.inspiration'}} {{inspiration.value}}/{{inspiration.max}}</span>
     <span class="v-stars">
       {{#each inspiration.pips}}
-      <button type="button" class="v-star {{#if on}}on{{/if}}" data-action="setInspiration" data-value="{{n}}" style="--icon:url('{{../inspirationIcon}}')" aria-label="{{n}}" {{#unless ../isGM}}{{#unless ../editable}}disabled{{/unless}}{{/unless}}></button>
+      <button type="button" class="v-star {{#if on}}on{{/if}}" data-action="setInspiration" data-value="{{n}}" aria-pressed="{{on}}" aria-label="{{n}}" {{#unless ../isGM}}{{#unless ../editable}}disabled{{/unless}}{{/unless}}><span class="v-star-icon" style="-webkit-mask-image:url('{{../inspirationIcon}}');mask-image:url('{{../inspirationIcon}}')"></span></button>
       {{/each}}
     </span>
   </div>

@@ -83,6 +83,8 @@ def section_html(section):
     html = "\n".join(parts)
     html = re.sub(r"<div>\s*</div>", "", html)
     html = re.sub(r"</?div[^>]*>", "", html)
+    # Шкала уровней аспекта: число и название в две колонки (класс для стилей системы)
+    html = re.sub(r"<ul>(?=<li><b>-?\d+</b>)", '<ul class="v-scale">', html)
     return html
 
 pages = []
