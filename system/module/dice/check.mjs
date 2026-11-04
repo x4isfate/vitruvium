@@ -143,7 +143,7 @@ export async function rollCheck(actor, options = {}) {
         }
       }
     }
-  }, { rollMode: game.settings.get("core", "rollMode") });
+  }, { messageMode: game.settings.get("core", "messageMode") });
 
   Hooks.callAll("vitruvium.rollCheck", actor, { options, successes, outcome, rolls }, message);
   return message;
