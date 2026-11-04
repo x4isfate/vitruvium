@@ -193,7 +193,7 @@ export async function promptCheck(actor, preset = {}) {
 
   const result = await DialogV2.wait({
     window: { title: game.i18n.format("VITRUVIUM.Check.Title", { name: actor.name }), icon: "fa-solid fa-dice-six" },
-    classes: ["vitruvium", "vitruvium-check-dialog"],
+    classes: ["vitruvium", "vitruvium-check-dialog", "crlngn-ws-off"],
     position: { width: 420 },
     content,
     rejectClose: false,

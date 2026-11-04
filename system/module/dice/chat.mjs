@@ -78,7 +78,7 @@ export async function requestCheck() {
   const content = await renderTemplate("systems/vitruvium/templates/apps/request-dialog.hbs", data);
   const fd = await DialogV2.wait({
     window: { title: game.i18n.localize("VITRUVIUM.Request.Title"), icon: "fa-solid fa-bullhorn" },
-    classes: ["vitruvium", "vitruvium-check-dialog"],
+    classes: ["vitruvium", "vitruvium-check-dialog", "crlngn-ws-off"],
     position: { width: 400 },
     content,
     rejectClose: false,

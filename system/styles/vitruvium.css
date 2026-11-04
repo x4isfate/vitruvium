@@ -541,3 +541,21 @@
 .vitruvium-stats .v-brief-aspects { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
 .vitruvium-stats .v-brief-aspects em { color: var(--v-muted); }
 .vitruvium-stats .v-brief-aspect-value { color: var(--v-accent); margin-left: 6px; }
+
+/* ------------------------------------------------------------------ */
+/*  Совместимость с Carolingian UI                                      */
+/*  Модуль задаёт шрифт заголовков, тень текста в шапке окна и размеры  */
+/*  заголовков в чате с селекторами от body. Повтор класса поднимает    */
+/*  вес наших правил, без модуля они ничего не меняют.                  */
+/*  Диалоги проверки исключены из его оформления окон классом           */
+/*  crlngn-ws-off.                                                      */
+/* ------------------------------------------------------------------ */
+
+.vitruvium.vitruvium.application :is(h1, h2, h3, h4, h5, h6) { font-family: var(--v-font); }
+.vitruvium.vitruvium.application .window-header,
+.vitruvium.vitruvium.application .window-header :is(*) { text-shadow: none; font-family: var(--v-font); }
+.chat-message .message-content .vitruvium-card.vitruvium-card h3 { font-family: var(--v-font); font-size: 17px; font-weight: 600; line-height: 1.2; }
+.chat-message .message-content .vitruvium-card.vitruvium-card { line-height: 1.35; }
+.vitruvium-card.vitruvium-card .vc-button:hover,
+.vitruvium-card.vitruvium-card .vitruvium-gm-tools button:hover { border-color: var(--v-accent); }
+.vitruvium.vitruvium-sheet.vitruvium-sheet .window-content section.v-pane.tab.active { padding: 4px 2px; scrollbar-gutter: auto; }
