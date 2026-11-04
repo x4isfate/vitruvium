@@ -13,7 +13,8 @@ export default class WelcomeWindow extends HandlebarsApplicationMixin(Applicatio
     window: { title: "VITRUVIUM.Welcome.Title", icon: "fa-solid fa-dice-six", resizable: true },
     actions: {
       openRules: WelcomeWindow.#onOpenRules,
-      toggleShow: WelcomeWindow.#onToggleShow
+      hideOnStart: WelcomeWindow.#onHideOnStart,
+      showOnStart: WelcomeWindow.#onShowOnStart
     }
   };
 
@@ -40,16 +41,23 @@ export default class WelcomeWindow extends HandlebarsApplicationMixin(Applicatio
     else pack.render(true);
   }
 
-  static async #onToggleShow(event, target) {
-    await game.settings.set("vitruvium", "welcomeShowOnStart", !!target.checked);
+  /** «Больше не показывать»: запомнить и закрыть окно. */
+  static async #onHideOnStart() {
+    await game.settings.set("vitruvium", "welcomeShowOnStart", false);
+    return this.close();
   }
 
-  /** Показать при запуске, если игрок не отключил окно или вышла новая версия. */
+  static async #onShowOnStart() {
+    await game.settings.set("vitruvium", "welcomeShowOnStart", true);
+    return this.render();
+  }
+
+  /** Показать при запуске, если игрок не отключил окно. */
   static maybeShow() {
     const seen = game.settings.get("vitruvium", "welcomeSeenVersion");
     const show = game.settings.get("vitruvium", "welcomeShowOnStart");
     const isNew = foundry.utils.isNewerVersion(game.system.version, seen || "0.0.0");
-    if ( show || isNew ) new WelcomeWindow().render(true);
+    if ( show ) new WelcomeWindow().render(true);
     if ( isNew ) game.settings.set("vitruvium", "welcomeSeenVersion", game.system.version);
   }
 }

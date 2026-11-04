@@ -38,7 +38,14 @@
   </section>
 
   <footer class="v-welcome-foot">
-    <label class="v-check"><input type="checkbox" data-action="toggleShow" {{#if showOnStart}}checked{{/if}}> Показывать при запуске</label>
-    <span class="v-hint">Открыть снова: «Настройки игры» → «Приветствие «ВИТРУВИЯ»».</span>
+    <div class="v-welcome-actions">
+      {{#if showOnStart}}
+      <button type="button" class="v-btn" data-action="hideOnStart"><i class="fa-solid fa-eye-slash"></i> {{localize 'VITRUVIUM.Welcome.hide'}}</button>
+      {{else}}
+      <button type="button" class="v-btn" data-action="showOnStart"><i class="fa-solid fa-eye"></i> {{localize 'VITRUVIUM.Welcome.show'}}</button>
+      {{/if}}
+      <button type="button" class="v-btn v-btn-accent" data-action="close"><i class="fa-solid fa-xmark"></i> {{localize 'VITRUVIUM.Welcome.close'}}</button>
+    </div>
+    <span class="v-hint">{{localize 'VITRUVIUM.Welcome.reopen'}}</span>
   </footer>
 </div>

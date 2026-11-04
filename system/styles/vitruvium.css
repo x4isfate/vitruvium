@@ -75,7 +75,7 @@
   box-shadow: none;
 }
 .vitruvium ::placeholder { color: var(--v-dim); }
-.vitruvium button {
+.vitruvium button:not(.fa-solid, .fa-regular, .fa-brands, .fas, .far, .fab) {
   font-family: var(--v-font);
   color: var(--v-ink);
 }
@@ -446,7 +446,7 @@
 .vitruvium-welcome .window-content { padding: 20px 24px; }
 .vitruvium-welcome .v-welcome-head { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
 .vitruvium-welcome .v-welcome-mark { width: 64px; height: 64px; border: none; }
-.vitruvium-welcome h1 { margin: 2px 0; border: none; font-size: 28px; font-weight: 600; color: var(--v-ink); }
+.vitruvium-welcome .v-welcome-head h1 { margin: 2px 0; border: none; font-size: 28px; font-weight: 600; color: var(--v-ink); }
 .vitruvium-welcome .v-welcome-head p { margin: 0; color: var(--v-ink-2); }
 .vitruvium-welcome .v-steps { margin: 8px 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; line-height: 1.45; font-size: 13px; }
 .vitruvium-welcome .v-steps b { color: var(--v-ink); }
@@ -455,7 +455,10 @@
 .vitruvium-welcome .v-credits dt { color: var(--v-muted); }
 .vitruvium-welcome .v-credits dd { margin: 0; }
 .vitruvium-welcome a { color: var(--v-accent); }
-.vitruvium-welcome .v-welcome-foot { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--v-line); padding-top: 10px; }
+.vitruvium-welcome .v-welcome-foot { display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--v-line); padding-top: 12px; }
+.vitruvium-welcome .v-welcome-actions { display: flex; gap: 8px; }
+.vitruvium-welcome .v-welcome-actions .v-btn { flex: 1; justify-content: center; }
+.vitruvium .v-btn-accent { background: var(--v-accent-soft); border-color: var(--v-accent); }
 
 /* Значки граней в стандартной подсказке броска (/r 3dv) */
 .dice-tooltip img.vitruvium-face,
@@ -551,11 +554,18 @@
 /*  crlngn-ws-off.                                                      */
 /* ------------------------------------------------------------------ */
 
-.vitruvium.vitruvium.application :is(h1, h2, h3, h4, h5, h6) { font-family: var(--v-font); }
+.vitruvium.vitruvium.application .window-content :is(h1, h2, h3, h4, h5, h6) { font-family: var(--v-font); }
 .vitruvium.vitruvium.application .window-header,
-.vitruvium.vitruvium.application .window-header :is(*) { text-shadow: none; font-family: var(--v-font); }
+.vitruvium.vitruvium.application .window-header :is(*) { text-shadow: none; }
+.vitruvium.vitruvium.application .window-header .window-title { font-family: var(--v-font); font-size: var(--font-size-14, 14px); margin: 0; border: none; }
 .chat-message .message-content .vitruvium-card.vitruvium-card h3 { font-family: var(--v-font); font-size: 17px; font-weight: 600; line-height: 1.2; }
 .chat-message .message-content .vitruvium-card.vitruvium-card { line-height: 1.35; }
 .vitruvium-card.vitruvium-card .vc-button:hover,
 .vitruvium-card.vitruvium-card .vitruvium-gm-tools button:hover { border-color: var(--v-accent); }
 .vitruvium.vitruvium-sheet.vitruvium-sheet .window-content section.v-pane.tab.active { padding: 4px 2px; scrollbar-gutter: auto; }
+
+/* С Carolingian UI акцент берётся из его темы, без модуля остаётся цвет сайта. */
+body.crlngn-ui {
+  --v-accent: var(--color-highlights, #ff8562);
+  --v-accent-soft: var(--color-highlights-50, rgba(172, 89, 72, 0.62));
+}
